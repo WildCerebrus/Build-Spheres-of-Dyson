@@ -1,3 +1,4 @@
+import java.lang.Math;
 
 public class LSatellite {
 	private int n;
@@ -47,5 +48,44 @@ public class LSatellite {
 			this.list[i].copy(this.list[i+1]);
 		}
 		this.n--;
+	}
+	public double distance(Satellite sat1, Satellite sat2) {
+		return Math.sqrt((sat1.getposition().getx()-sat2.getposition().getx())*(sat1.getposition().getx()-sat2.getposition().getx())+
+						 (sat1.getposition().gety()-sat2.getposition().gety())*(sat1.getposition().gety()-sat2.getposition().gety())+
+						 (sat1.getposition().getz()-sat2.getposition().getz())*(sat1.getposition().getz()-sat2.getposition().getz()));
+	}
+	public double distance(Satellite sat) {
+		return Math.sqrt(sat.getposition().getx()*sat.getposition().getx()+
+						 sat.getposition().gety()*sat.getposition().gety()+
+						 sat.getposition().getz()*sat.getposition().getz());
+	}
+	public void collision(Satellite sat1, Satellite sat2) {
+		if((satIn(sat1)>=0)&&(satIn(sat2)>=0)) {
+			double collision = (sat1.getsize() > sat2.getsize()) ? sat1.getsize() : sat2.getsize();
+			if(distance(sat1,sat2)<collision) {
+				destroy(sat1);
+				destroy(sat2);
+			}
+		}
+	}
+	public void refresh(double weight,double second) {
+		double a,d;
+		Coordonnees temp = new Coordonnees();
+		for(int i=0;i<this.n;i++) {
+			d=distance(this.list[i]);
+			a=1.777*(10^8)/(d*d);
+			temp.setx(-this.list[i].getposition().getx()*a/d);
+			temp.sety(-this.list[i].getposition().gety()*a/d);
+			temp.setz(-this.list[i].getposition().getz()*a/d);
+			this.list[i].setacceleration(temp);
+			temp.setx(this.list[i].getspeed().getx()+second*this.list[i].getacceleration().getx());
+			temp.sety(this.list[i].getspeed().gety()+second*this.list[i].getacceleration().gety());
+			temp.setz(this.list[i].getspeed().getz()+second*this.list[i].getacceleration().getz());
+			this.list[i].setspeed(temp);
+			temp.setx(this.list[i].getposition().getx()+second*this.list[i].getspeed().getx());
+			temp.sety(this.list[i].getposition().gety()+second*this.list[i].getspeed().gety());
+			temp.setz(this.list[i].getposition().getz()+second*this.list[i].getspeed().getz());
+			this.list[i].setposition(temp);
+		}
 	}
 }

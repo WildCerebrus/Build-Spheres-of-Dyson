@@ -3,7 +3,8 @@ public class Satellite {
 	private Coordonnees position = new Coordonnees(), 
 						speed = new Coordonnees(),
 						acceleration = new Coordonnees();
-	private int model, size, weight;
+	private int model;
+	private double size, weight;
 	private String name = new String();
 	public Satellite(Coordonnees position, Coordonnees speed, String name) {
 		this.position.setx(position.getx());
@@ -27,16 +28,16 @@ public class Satellite {
 	public void setmodel(int modele) {
 		this.model=modele;
 	}
-	public int getsize() {
+	public double getsize() {
 		return this.size;
 	}
-	public void setsize(int size) {
+	public void setsize(double size) {
 		this.size=size;
 	}
-	public int getweight() {
+	public double getweight() {
 		return this.weight;
 	}
-	public void setweight(int weight) {
+	public void setweight(double weight) {
 		this.weight=weight;
 	}
 	public Coordonnees getposition() {
