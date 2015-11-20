@@ -23,11 +23,11 @@ public class SwarmPart extends Satellite {
 	public void update(int time) {
 		double radius = Math.sqrt(Math.pow(this.getPosition().getX(),2)+
 				Math.pow(this.getPosition().getY(),2)+Math.pow(this.getPosition().getZ(),2));
-		this.acceleration.setX((this.position.getX()/radius)*
+		this.acceleration.setX(((this.position.getX()*-1)/radius)*
 				6.67384*1.989*(Math.pow(10, 19)/Math.pow(radius,2)));
-		this.acceleration.setY((this.position.getY()/radius)*
+		this.acceleration.setY(((this.position.getY()*-1)/radius)*
 				6.67384*1.989*(Math.pow(10, 19)/Math.pow(radius,2)));
-		this.acceleration.setZ((this.position.getZ()/radius)*
+		this.acceleration.setZ(((this.position.getZ()*-1)/radius)*
 				6.67384*1.989*(Math.pow(10, 19)/Math.pow(radius,2)));
 		this.redirection(this.acceleration.getX()*time, this.acceleration.getY()*time, 
 				this.acceleration.getZ()*time);
