@@ -50,4 +50,10 @@ public class Player {
 	public String toString() {
 		return pseudo + " have " + satellites.size() + " satellites & " + funds + " $";
 	}
+	public String listeSat() {
+		String liste=this.pseudo+" possède ";
+		int i;
+		for(i=0;i<this.satellites.size();i++) liste+="\r\t"+satellites.get(i).getId();
+		return liste;
+	}
 }
