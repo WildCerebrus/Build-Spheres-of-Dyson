@@ -1,22 +1,16 @@
 import java.util.ArrayList;
 
 public class Player {
-	private ArrayList<Satellite> satellites;
-	private String pseudo;
-	private int funds;
+	private ArrayList<Satellite> satellites=new ArrayList<Satellite>();
+	private String pseudo="";
+	private int funds=0;
 	public Player() {
-		this.satellites=new ArrayList<Satellite>();
-		this.pseudo="";
-		this.funds=0;
 	}
 	public Player(String pseudo) {
-		this.satellites=new ArrayList<Satellite>();
 		this.pseudo=pseudo;
-		this.funds=0;
 	}
 	public Player(ArrayList<Satellite> satellites, String pseudo, int funds) {
-		this.satellites=new ArrayList<Satellite>();
-		if (satellites!=null) {
+		if (satellites != null) {
 			addSat(satellites);
 		}
 		this.pseudo=pseudo;

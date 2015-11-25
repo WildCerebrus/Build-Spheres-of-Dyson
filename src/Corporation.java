@@ -1,22 +1,17 @@
 import java.util.ArrayList;
 
 public class Corporation {
-	private ArrayList<Player> players;
-	private String name;
-	private int pooledFunds;
+	private ArrayList<Player> players=new ArrayList<Player>();
+	private String name="";
+	private int pooledFunds=0;
 	public Corporation(){
-		this.players=new ArrayList<Player>();
-		this.name="";
-		this.pooledFunds=0;
+		
 	}
 	public Corporation(String name){
-		this.players=new ArrayList<Player>();
 		this.name=name;
-		this.pooledFunds=0;
 	}
 	public Corporation(ArrayList<Player> players,String name,int pooledFunds){
-		this.players=new ArrayList<Player>();
-		if(players!=null){
+		if(players != null){
 			addPlayer(players);
 		}
 		this.name=name;

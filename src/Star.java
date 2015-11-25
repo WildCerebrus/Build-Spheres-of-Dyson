@@ -1,15 +1,14 @@
 //Classe de déclaration des étoiles autour desquelles ont construit les SoD
 public class Star {
-	private Coordinates position;
-	private String name;
-	private double masse;
+	private Coordinates position=new Coordinates();
+	private String name="sun";
+	private double mass=1.989*(Math.pow(10, 19));
 	public Star() {
-		this(new Coordinates(),"",1.989*(Math.pow(10, 19)));
 	}
-	public Star(Coordinates position,String name,double masse) {
+	public Star(Coordinates position,String name,double mass) {
 		this.setPosition(position);
 		this.setName(name);
-		this.setMasse(masse);
+		this.setMass(mass);
 	}
 	public void translate(double dx, double dy, double dz) {
 		this.position.translate(dx, dy, dz);
@@ -29,10 +28,10 @@ public class Star {
 	public void setName(String name) {
 		this.name=name;
 	}
-	public double getMasse() {
-		return masse;
+	public double getMass() {
+		return mass;
 	}
-	public void setMasse(double masse) {
-		this.masse = masse;
+	public void setMass(double mass) {
+		this.mass = mass;
 	}
 }

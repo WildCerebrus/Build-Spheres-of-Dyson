@@ -14,7 +14,6 @@ public class BuildSpheresofDyson {
 		sats.add(s1);
 		Corporation corp = new Corporation(null,"Bro Corp",18);
 		corp.addPlayer(toto);
-		System.out.println(corp.liste());
+		System.out.println(corp.liste());		
 	}
-
 }
