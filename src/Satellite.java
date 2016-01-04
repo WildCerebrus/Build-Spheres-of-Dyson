@@ -1,9 +1,10 @@
 
 public abstract class Satellite {
-	protected Coordinates position, speed, acceleration;
-	protected double mass, energy;
-	protected int state, id;
-	protected Star sun;
+	private Coordinates position, speed, acceleration;
+	private double mass, energy;
+	private int state, id;
+	private Star sun;
+	private String type;
 	public Coordinates getPosition() {
 		return position;
 	}
@@ -51,6 +52,12 @@ public abstract class Satellite {
 	}
 	public void setSun(Star sun) {
 		this.sun = sun;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }
