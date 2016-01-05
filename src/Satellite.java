@@ -59,5 +59,4 @@ public abstract class Satellite {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
 }
