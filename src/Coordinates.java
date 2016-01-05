@@ -1,10 +1,11 @@
-// Classe de déclaration des positions cartésiennes 3D en mètre
+// Classe de position cartésienne 3D en mètre
 public class Coordinates {
 	private double x,y,z; //coordonnées 3D en mètre
-	public Coordinates() {
+	//déclaration à l'origine par défaut
+	public Coordinates() { 
 		this(0,0,0);
 	}
-	public Coordinates(double x, double y, double z) {
+	public Coordinates(double x, double y, double z) { //déclaration de type double
 		this.setX(x);
 		this.setY(y);
 		this.setZ(z);
@@ -15,10 +16,11 @@ public class Coordinates {
 		this.setY(this.getY() + dy);
 		this.setZ(this.getZ() + dz);
 	}
+	@Override
 	public String toString() {
 		return "\r\tX = "+x+"\r\tY = "+y+"\r\tZ = "+z;
 	}
-	public double getX() {
+	public double getX() {			//getters et setters
 		return x;
 	}
 	public void setX(double x) {

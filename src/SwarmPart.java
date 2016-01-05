@@ -1,8 +1,10 @@
-
+//Satellite de type partie d'essaim (panneau simple)
 public class SwarmPart extends Satellite {
+	//on peut initialiser un satellite par défaut
 	public SwarmPart() {
 		this(new Coordinates(),new Coordinates(),new Coordinates(),0,0,0,0,new Star());
 	}
+	//ou avec spécifictés (conseillé)
 	public SwarmPart(Coordinates position, Coordinates speed, Coordinates acceleration, 
 			double mass, double energy, int state, int id, Star sun) {
 		this.setPosition(position);
@@ -15,12 +17,15 @@ public class SwarmPart extends Satellite {
 		this.setSun(sun);
 		this.setType("SwarmPart");
 	}
+	//transport du satellite
 	public void teleportation(double dx, double dy, double dz) {
 		this.getPosition().translate(dx, dy, dz);
 	}
+	//modification de la trajectoire
 	public void redirection(double dx, double dy, double dz) {
 		this.getSpeed().translate(dx, dy, dz);
 	}
+	//mise à jour du satellite après time secondes
 	public void update(int time) {
 		double radius = Math.sqrt(Math.pow(this.getPosition().getX(),2)+
 				Math.pow(this.getPosition().getY(),2)+Math.pow(this.getPosition().getZ(),2));
@@ -35,6 +40,7 @@ public class SwarmPart extends Satellite {
 		this.teleportation(this.getSpeed().getX()*time, this.getSpeed().getY()*time, 
 				this.getSpeed().getZ()*time);
 	}
+	@Override
 	public String toString() {
 		return "\r\t"+this.getId()+" is at\r\tX : "+this.getPosition().getX()+"\r\tY : "+
 				this.getPosition().getY()+"\r\tZ : "+this.getPosition().getZ()+"\r\tfrom "+

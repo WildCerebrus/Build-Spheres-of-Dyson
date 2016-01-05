@@ -1,29 +1,33 @@
 import java.util.ArrayList;
-
+//Classe de joueur
 public class Player {
-	private ArrayList<Satellite> satellites=new ArrayList<Satellite>();
-	private String pseudo="";
-	private int funds=0;
-	public Player() {
-	}
+	private ArrayList<Satellite> satellites=new ArrayList<Satellite>(); //liste des satellites du joueurs
+	private String pseudo=""; //pseudonyme du joueur
+	private int funds=0; //fonds monétaires du joueur
+	//de base les champs sont initialisés comme ci-dessus
+	public Player() {}
+	//on peut initialiser avec le pseudo seulement
 	public Player(String pseudo) {
 		this.pseudo=pseudo;
 	}
+	//ou avec tous les champs
 	public Player(ArrayList<Satellite> satellites, String pseudo, int funds) {
-		if (satellites != null) {
+		if (satellites != null) {//on vérifie qu'il y a bien des satellites à mettre
 			addSat(satellites);
 		}
 		this.pseudo=pseudo;
 		this.funds=funds;
 	}
+	//méthode pour ajouter des satellites
 	public void addSat(ArrayList<Satellite> satellites) {
 		int i;
 		for(i=0;i<satellites.size();i++) addSat(satellites.get(i));
 	}
+	//méthode pour ajouter un satellite
 	public void addSat(Satellite satellite) {
 		this.satellites.add(satellite);
 	}
-	public ArrayList<Satellite> getSatellites() {
+	public ArrayList<Satellite> getSatellites() {		//getters et setters
 		return satellites;
 	}
 	public void setSatellites(ArrayList<Satellite> satellites) {
@@ -41,6 +45,8 @@ public class Player {
 	public void setFunds(int funds) {
 		this.funds = funds;
 	}
+	//deux affichages
+	@Override
 	public String toString() {
 		return pseudo + " have " + satellites.size() + " satellites & " + funds + " $";
 	}

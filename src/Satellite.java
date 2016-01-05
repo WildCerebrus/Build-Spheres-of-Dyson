@@ -1,11 +1,11 @@
-
+//Classe générique abstraite de satellite
 public abstract class Satellite {
-	private Coordinates position, speed, acceleration;
-	private double mass, energy;
-	private int state, id;
-	private Star sun;
-	private String type;
-	public Coordinates getPosition() {
+	private Coordinates position, speed, acceleration; //coordonnées du satellite (lecture dépendant du type)
+	private double mass, energy; //masse en kg et énergie stockée en kWh
+	private int state, id; //état du satellite et identifiant
+	private Star sun; //étoile autour de laquelle gravite le satellite
+	private String type; //type du satellite (partie d'un essaim, ...
+	public Coordinates getPosition() {		//getters et setters
 		return position;
 	}
 	public Coordinates getSpeed() {

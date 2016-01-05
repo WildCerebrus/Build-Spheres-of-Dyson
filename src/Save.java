@@ -4,20 +4,23 @@ import java.io.BufferedReader ;
 import java.io.IOException ;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+//Classe de gestion de fichiers de sauvegarde
 public class Save {
-	private ArrayList<Corporation> corporations=new ArrayList<Corporation>();
-	private ArrayList<Player> players=new ArrayList<Player>();
-	private ArrayList<Satellite> satellites=new ArrayList<Satellite>();
-	private ArrayList<Star> stars=new ArrayList<Star>();
-	private String path="temp.bsod";
+	private ArrayList<Corporation> corporations=new ArrayList<Corporation>(); //liste des corporations
+	private ArrayList<Player> players=new ArrayList<Player>(); //liste des joueurs
+	private ArrayList<Satellite> satellites=new ArrayList<Satellite>(); //liste des satellites
+	private ArrayList<Star> stars=new ArrayList<Star>(); //liste des astres
+	private String path="temp.bsod"; //sauvegarde par défaut
+	//charge la sauvegarde de base
 	public Save() {
 		this.fromFile();
 	}
+	//charge une sauvegarde demandée
 	public Save(String path){
 		this.path=path+".bsod";
 		this.fromFile();
 	}
+	//crée un listing en vue d'une sauvegarde
 	public Save(ArrayList<Corporation> corporations,ArrayList<Player> players,
 			ArrayList<Satellite> satellites,ArrayList<Star> stars, String path){
 		if(corporations != null) addCorporations(corporations);
@@ -26,25 +29,31 @@ public class Save {
 		if(stars != null) addStars(stars);
 		this.path=path+".bsod";
 	}
+	//ajoute des corporations à la liste
 	public void addCorporations(ArrayList<Corporation> corporations) {
 		int i;
 		for(i=0;i<corporations.size();i++) this.corporations.add(corporations.get(i));
 	}
+	//ajoute des joueurs à la liste
 	public void addPlayers(ArrayList<Player> players) {
 		int i;
 		for(i=0;i<players.size();i++) this.players.add(players.get(i));
 	}
+	//ajoute des satellites à la liste
 	public void addSatellites(ArrayList<Satellite> satellites) {
 		int i;
 		for(i=0;i<satellites.size();i++) this.satellites.add(satellites.get(i));
 	}
+	//ajoute des astres à la liste
 	public void addStars(ArrayList<Star> stars){
 		int i;
 		for(i=0;i<stars.size();i++) this.stars.add(stars.get(i));
 	}
+	//retourne le chemin relatif du fichier de sauvegarde
 	public String getPath() {
 		return path;
 	}
+	//écrit la sauvegarde dans le fichier désigné par le path
 	public void save(){
 		PrintWriter saver;
 		try
@@ -63,6 +72,7 @@ public class Save {
 			System.out.println("Problème d'IO");
 		}
 	}
+	//convertit les données de sauvegarde en texte interprétable par la suite
 	public String toFile(){
 		int i,j,k;
 		String text="";
@@ -172,6 +182,7 @@ public class Save {
 		text+="¶";
 		return text;
 	}
+	//lit le fichier désigné par Path et récupère la ligne cryptée
 	public String read() {
 		BufferedReader reader;
 		String tmp = "";
@@ -193,6 +204,7 @@ public class Save {
 		}
 		return tmp;
 	}
+	//ajoute les données d'un texte de sauvegarde à la sauvegarde
 	public void fromFile(){
 		String text=this.read();
 		String[] Arrays = text.split("¶");
@@ -231,11 +243,24 @@ public class Save {
 								new Star(new Coordinates(Double.parseDouble(Satellite[13]),
 								Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 								Satellite[16],Double.parseDouble(Satellite[17]))));
+						this.satellites.add(new SwarmPart(new Coordinates(Double.parseDouble(Satellite[1]),
+								Double.parseDouble(Satellite[2]),Double.parseDouble(Satellite[3])),
+								new Coordinates(Double.parseDouble(Satellite[4]),
+								Double.parseDouble(Satellite[5]),Double.parseDouble(Satellite[6])),
+								new Coordinates(Double.parseDouble(Satellite[7]),
+								Double.parseDouble(Satellite[8]),Double.parseDouble(Satellite[9])),
+								Double.parseDouble(Satellite[10]),Double.parseDouble(Satellite[11]),
+								Integer.parseInt(Satellite[12]),Integer.parseInt(Satellite[0]),
+								new Star(new Coordinates(Double.parseDouble(Satellite[13]),
+								Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
+								Satellite[16],Double.parseDouble(Satellite[17]))));
 					}
 				}
 				Plas.add(new Player(Sats,Player[0],Integer.parseInt(Player[2])));
+				this.players.add(new Player(Sats,Player[0],Integer.parseInt(Player[2])));
 			}
 			Cors.add(new Corporation(Plas,Corporation[0],Integer.parseInt(Corporation[2])));
+			this.corporations.add(new Corporation(Plas,Corporation[0],Integer.parseInt(Corporation[2])));
 		}
 		Players = Arrays[1].split("Ž");
 		Plas = new ArrayList<Player>();
@@ -257,9 +282,21 @@ public class Save {
 							new Star(new Coordinates(Double.parseDouble(Satellite[13]),
 							Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 							Satellite[16],Double.parseDouble(Satellite[17]))));
+					this.satellites.add(new SwarmPart(new Coordinates(Double.parseDouble(Satellite[1]),
+							Double.parseDouble(Satellite[2]),Double.parseDouble(Satellite[3])),
+							new Coordinates(Double.parseDouble(Satellite[4]),
+							Double.parseDouble(Satellite[5]),Double.parseDouble(Satellite[6])),
+							new Coordinates(Double.parseDouble(Satellite[7]),
+							Double.parseDouble(Satellite[8]),Double.parseDouble(Satellite[9])),
+							Double.parseDouble(Satellite[10]),Double.parseDouble(Satellite[11]),
+							Integer.parseInt(Satellite[12]),Integer.parseInt(Satellite[0]),
+							new Star(new Coordinates(Double.parseDouble(Satellite[13]),
+							Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
+							Satellite[16],Double.parseDouble(Satellite[17]))));
 				}
 			}
 			Plas.add(new Player(Sats,Player[0],Integer.parseInt(Player[2])));
+			this.players.add(new Player(Sats,Player[0],Integer.parseInt(Player[2])));
 		}
 		Satellites = Arrays[2].split("Š");
 		Sats = new ArrayList<Satellite>();
@@ -277,6 +314,17 @@ public class Save {
 						new Star(new Coordinates(Double.parseDouble(Satellite[13]),
 						Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 						Satellite[16],Double.parseDouble(Satellite[17]))));
+				this.satellites.add(new SwarmPart(new Coordinates(Double.parseDouble(Satellite[1]),
+						Double.parseDouble(Satellite[2]),Double.parseDouble(Satellite[3])),
+						new Coordinates(Double.parseDouble(Satellite[4]),
+						Double.parseDouble(Satellite[5]),Double.parseDouble(Satellite[6])),
+						new Coordinates(Double.parseDouble(Satellite[7]),
+						Double.parseDouble(Satellite[8]),Double.parseDouble(Satellite[9])),
+						Double.parseDouble(Satellite[10]),Double.parseDouble(Satellite[11]),
+						Integer.parseInt(Satellite[12]),Integer.parseInt(Satellite[0]),
+						new Star(new Coordinates(Double.parseDouble(Satellite[13]),
+						Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
+						Satellite[16],Double.parseDouble(Satellite[17]))));
 			}
 		}
 		Stars = Arrays[3].split("Š");
@@ -284,6 +332,8 @@ public class Save {
 		for(k=0;k<Stars.length;k++){
 			Star = Stars[k].split("±");
 			Stas.add(new Star(new Coordinates(Double.parseDouble(Star[1]),Double.parseDouble(Star[2]),
+					Double.parseDouble(Star[3])),Star[0],Double.parseDouble(Star[4])));
+			this.stars.add(new Star(new Coordinates(Double.parseDouble(Star[1]),Double.parseDouble(Star[2]),
 					Double.parseDouble(Star[3])),Star[0],Double.parseDouble(Star[4])));
 		}
 	}
