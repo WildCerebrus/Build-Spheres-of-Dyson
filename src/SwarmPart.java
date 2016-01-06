@@ -1,13 +1,13 @@
 //Satellite de type partie d'essaim (panneau simple)
 public class SwarmPart extends Satellite {
-	private Dimensions dimensions;
+	private PanelDimensions panelDimensions;
 	//on peut initialiser un satellite par défaut
 	public SwarmPart() {
-		this(new Coordinates(),new Coordinates(),new Coordinates(),0,0,0,0,new Star(),new Dimensions());
+		this(new Coordinates(),new Coordinates(),new Coordinates(),0,0,0,0,new Star(),new PanelDimensions());
 	}
 	//ou avec spécifictés (conseillé)
 	public SwarmPart(Coordinates position, Coordinates speed, Coordinates acceleration, 
-			double mass, double energy, int state, int id, Star sun, Dimensions dimensions) {
+			double mass, double energy, int state, int id, Star sun, PanelDimensions panelDimensions) {
 		this.setPosition(position);
 		this.setSpeed(speed);
 		this.setAcceleration(acceleration);
@@ -17,7 +17,7 @@ public class SwarmPart extends Satellite {
 		this.setId(id);
 		this.setSun(sun);
 		this.setType("SwarmPart");
-		this.setDimensions(dimensions);
+		this.setDimensions(panelDimensions);
 	}
 	//transport du satellite
 	public void teleportation(double dx, double dy, double dz) {
@@ -48,10 +48,10 @@ public class SwarmPart extends Satellite {
 				this.getPosition().getY()+"\r\tZ : "+this.getPosition().getZ()+"\r\tfrom "+
 				this.getSun().getName();
 	}
-	public Dimensions getDimensions() {
-		return this.dimensions;
+	public PanelDimensions getDimensions() {
+		return this.panelDimensions;
 	}
-	public void setDimensions(Dimensions dimensions) {
-		this.dimensions=dimensions;
+	public void setDimensions(PanelDimensions panelDimensions) {
+		this.panelDimensions=panelDimensions;
 	}
 }

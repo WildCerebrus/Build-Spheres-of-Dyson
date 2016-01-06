@@ -111,9 +111,9 @@ public class Save {
 					text+="±"+sate.getSun().getMass();
 					text+="±"+sate.getType();
 					if(sate.getType().equals("SwarmPart")){
-						text+="±"+((SwarmPart) sate).getDimensions().getX();
-						text+="±"+((SwarmPart) sate).getDimensions().getY();
-						text+="±"+((SwarmPart) sate).getDimensions().getZ();
+						text+="±"+((SwarmPart) sate).getDimensions().getLength();
+						text+="±"+((SwarmPart) sate).getDimensions().getWidth();
+						text+="±"+((SwarmPart) sate).getDimensions().getThickness();
 					}
 				}
 				text+="†"+play.getFunds();
@@ -148,9 +148,9 @@ public class Save {
 				text+="±"+sate.getSun().getMass();
 				text+="±"+sate.getType();
 				if(sate.getType().equals("SwarmPart")){
-					text+="±"+((SwarmPart) sate).getDimensions().getX();
-					text+="±"+((SwarmPart) sate).getDimensions().getY();
-					text+="±"+((SwarmPart) sate).getDimensions().getZ();
+					text+="±"+((SwarmPart) sate).getDimensions().getLength();
+					text+="±"+((SwarmPart) sate).getDimensions().getWidth();
+					text+="±"+((SwarmPart) sate).getDimensions().getThickness();
 				}
 			}
 			text+="†"+play.getFunds();
@@ -179,9 +179,9 @@ public class Save {
 			text+="±"+sate.getSun().getMass();
 			text+="±"+sate.getType();
 			if(sate.getType().equals("SwarmPart")){
-				text+="±"+((SwarmPart) sate).getDimensions().getX();
-				text+="±"+((SwarmPart) sate).getDimensions().getY();
-				text+="±"+((SwarmPart) sate).getDimensions().getZ();
+				text+="±"+((SwarmPart) sate).getDimensions().getLength();
+				text+="±"+((SwarmPart) sate).getDimensions().getWidth();
+				text+="±"+((SwarmPart) sate).getDimensions().getThickness();
 			}
 		}
 		text+="¶";
@@ -258,7 +258,7 @@ public class Save {
 								new Star(new Coordinates(Double.parseDouble(Satellite[13]),
 								Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 								Satellite[16],Double.parseDouble(Satellite[17])), 
-								new Dimensions(Double.parseDouble(Satellite[19]), 
+								new PanelDimensions(Double.parseDouble(Satellite[19]), 
 								Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
 						this.satellites.add(new SwarmPart(new Coordinates(Double.parseDouble(Satellite[1]),
 								Double.parseDouble(Satellite[2]),Double.parseDouble(Satellite[3])),
@@ -271,7 +271,7 @@ public class Save {
 								new Star(new Coordinates(Double.parseDouble(Satellite[13]),
 								Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 								Satellite[16],Double.parseDouble(Satellite[17])),
-								new Dimensions(Double.parseDouble(Satellite[19]), 
+								new PanelDimensions(Double.parseDouble(Satellite[19]), 
 								Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
 					}
 				}
@@ -301,7 +301,7 @@ public class Save {
 							new Star(new Coordinates(Double.parseDouble(Satellite[13]),
 							Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 							Satellite[16],Double.parseDouble(Satellite[17])),
-							new Dimensions(Double.parseDouble(Satellite[19]), 
+							new PanelDimensions(Double.parseDouble(Satellite[19]), 
 							Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
 					this.satellites.add(new SwarmPart(new Coordinates(Double.parseDouble(Satellite[1]),
 							Double.parseDouble(Satellite[2]),Double.parseDouble(Satellite[3])),
@@ -314,7 +314,7 @@ public class Save {
 							new Star(new Coordinates(Double.parseDouble(Satellite[13]),
 							Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 							Satellite[16],Double.parseDouble(Satellite[17])),
-							new Dimensions(Double.parseDouble(Satellite[19]), 
+							new PanelDimensions(Double.parseDouble(Satellite[19]), 
 							Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
 				}
 			}
@@ -337,7 +337,7 @@ public class Save {
 						new Star(new Coordinates(Double.parseDouble(Satellite[13]),
 						Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 						Satellite[16],Double.parseDouble(Satellite[17])),
-						new Dimensions(Double.parseDouble(Satellite[19]), 
+						new PanelDimensions(Double.parseDouble(Satellite[19]), 
 						Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
 				this.satellites.add(new SwarmPart(new Coordinates(Double.parseDouble(Satellite[1]),
 						Double.parseDouble(Satellite[2]),Double.parseDouble(Satellite[3])),
@@ -350,7 +350,7 @@ public class Save {
 						new Star(new Coordinates(Double.parseDouble(Satellite[13]),
 						Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 						Satellite[16],Double.parseDouble(Satellite[17])),
-						new Dimensions(Double.parseDouble(Satellite[19]), 
+						new PanelDimensions(Double.parseDouble(Satellite[19]), 
 						Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
 			}
 		}
