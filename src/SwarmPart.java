@@ -1,13 +1,13 @@
 //Satellite de type partie d'essaim (panneau simple)
 public class SwarmPart extends Satellite {
-	private Coordinates dimensions;
+	private Dimensions dimensions;
 	//on peut initialiser un satellite par défaut
 	public SwarmPart() {
-		this(new Coordinates(),new Coordinates(),new Coordinates(),0,0,0,0,new Star(),new Coordinates());
+		this(new Coordinates(),new Coordinates(),new Coordinates(),0,0,0,0,new Star(),new Dimensions());
 	}
 	//ou avec spécifictés (conseillé)
 	public SwarmPart(Coordinates position, Coordinates speed, Coordinates acceleration, 
-			double mass, double energy, int state, int id, Star sun, Coordinates dimensions) {
+			double mass, double energy, int state, int id, Star sun, Dimensions dimensions) {
 		this.setPosition(position);
 		this.setSpeed(speed);
 		this.setAcceleration(acceleration);
@@ -48,10 +48,10 @@ public class SwarmPart extends Satellite {
 				this.getPosition().getY()+"\r\tZ : "+this.getPosition().getZ()+"\r\tfrom "+
 				this.getSun().getName();
 	}
-	public Coordinates getDimensions() {
+	public Dimensions getDimensions() {
 		return this.dimensions;
 	}
-	public void setDimensions(Coordinates dimensions) {
+	public void setDimensions(Dimensions dimensions) {
 		this.dimensions=dimensions;
 	}
 }
