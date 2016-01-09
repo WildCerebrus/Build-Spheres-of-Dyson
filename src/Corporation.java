@@ -56,4 +56,22 @@ public class Corporation {
 		for(i=0;i<players.size();i++) liste+="\r\t"+players.get(i).getPseudo();
 		return liste;
 	}
+	public void displayName(int n) {
+		int i;
+		for(i=0;i<n;i++) System.out.print("\t");
+		System.out.print(this.name+"\r");
+		for(i=0;i<n;i++) System.out.print("\t");
+		System.out.print("Joueurs :\r");
+		for(i=0;i<this.players.size();i++){
+			this.players.get(i).displayName(n+1);
+		}
+	}
+	public void update(int n) {
+		int i,j;
+		for(i=0;i<this.players.size();i++){
+			j=this.players.get(i).getFees();
+			this.players.get(i).setFunds(-n*j);
+			this.pooledFunds+=j*n;
+		}
+	}
 }

@@ -3,7 +3,10 @@ public class Coordinates {
 	private double x,y,z; //coordonnées 3D en mètre
 	//déclaration à l'origine par défaut
 	public Coordinates() { 
-		this(0,0,0);
+		this(random(),random(),random());
+	}
+	private static double random() {
+		return Math.pow(10, 9)*(Math.random()-0.5);
 	}
 	public Coordinates(double x, double y, double z) { //déclaration de type double
 		this.setX(x);

@@ -4,6 +4,7 @@ public class Player {
 	private ArrayList<Satellite> satellites=new ArrayList<Satellite>(); //liste des satellites du joueurs
 	private String pseudo=""; //pseudonyme du joueur
 	private int funds=0; //fonds monétaires du joueur
+	private int fees=0;
 	//de base les champs sont initialisés comme ci-dessus
 	public Player() {}
 	//on peut initialiser avec le pseudo seulement
@@ -11,7 +12,7 @@ public class Player {
 		this.pseudo=pseudo;
 	}
 	//ou avec tous les champs
-	public Player(ArrayList<Satellite> satellites, String pseudo, int funds) {
+	public Player(ArrayList<Satellite> satellites, String pseudo, int funds, int fees) {
 		if (satellites != null) {//on vérifie qu'il y a bien des satellites à mettre
 			addSat(satellites);
 		}
@@ -55,5 +56,22 @@ public class Player {
 		int i;
 		for(i=0;i<this.satellites.size();i++) liste+="\r\t"+satellites.get(i).getId();
 		return liste;
+	}
+	public void displayName(int n) {
+		int i;
+		for(i=0;i<n;i++) System.out.print("\t");
+		System.out.print(this.pseudo+"\r");
+		for(i=0;i<n;i++) System.out.print("\t");
+		System.out.print("Satellites :\r");
+		for(i=0;i<this.satellites.size();i++){
+			this.satellites.get(i).displayName(n+1);
+		}
+	}
+	public int getFees() {
+		return this.fees;
+	}
+	public void update(int n) {
+		// TODO Auto-generated method stub
+		
 	}
 }

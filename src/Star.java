@@ -11,6 +11,10 @@ public class Star {
 		this.setName(name);
 		this.setMass(mass);
 	}
+	//ou juste vec un nom
+	public Star(String name) {
+		this.name=name;
+	}
 	//déplace l'étoile
 	public void translate(double dx, double dy, double dz) {
 		this.position.translate(dx, dy, dz);
@@ -36,5 +40,18 @@ public class Star {
 	}
 	public void setMass(double mass) {
 		this.mass = mass;
+	}
+	public void displayName(int n) {
+		int i;
+		String s = "l'astre "+this.name+" est en "+this.position.getX()+"\t"+this.position.getY()+"\t"
+				+this.position.getZ();
+		for(i=0;i<n;i++){
+			System.out.print("\t");
+		}
+		System.out.print(s);
+	}
+	public void update(int n) {
+		// TODO Auto-generated method stub
+		
 	}
 }

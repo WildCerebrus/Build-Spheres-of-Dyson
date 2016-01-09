@@ -59,4 +59,15 @@ public abstract class Satellite {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public void displayName(int n) {
+		int i;
+		String s="le satellite n°"+this.id+" est un "+this.getModele()+" et est en "+
+					this.position.getX()+"\t"+this.position.getY()+"\t"+this.position.getZ();
+		for(i=0;i<n;i++){
+			System.out.print("\t");
+		}
+		System.out.print(s);
+	}
+	public abstract String getModele();
+	public abstract void update(int n);
 }

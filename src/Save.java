@@ -11,14 +11,11 @@ public class Save {
 	private ArrayList<Satellite> satellites=new ArrayList<Satellite>(); //liste des satellites
 	private ArrayList<Star> stars=new ArrayList<Star>(); //liste des astres
 	private String path="temp.bsod"; //sauvegarde par défaut
-	//charge la sauvegarde de base
-	public Save() {
-		this.fromFile();
-	}
-	//charge une sauvegarde demandée
+	//de base les champs sont initialisés comme ci-dessus
+	public Save() {	}
+	//ou avec un path précis
 	public Save(String path){
 		this.path=path+".bsod";
-		this.fromFile();
 	}
 	//crée un listing en vue d'une sauvegarde
 	public Save(ArrayList<Corporation> corporations,ArrayList<Player> players,
@@ -115,8 +112,10 @@ public class Save {
 						text+="±"+((SwarmPart) sate).getDimensions().getWidth();
 						text+="±"+((SwarmPart) sate).getDimensions().getThickness();
 					}
+					text+="±"+sate.getModele();
 				}
 				text+="†"+play.getFunds();
+				text+="†"+play.getFees();
 			}
 			text+="‡"+corp.getPooledFunds();
 		}
@@ -152,8 +151,10 @@ public class Save {
 					text+="±"+((SwarmPart) sate).getDimensions().getWidth();
 					text+="±"+((SwarmPart) sate).getDimensions().getThickness();
 				}
+				text+="±"+sate.getModele();
 			}
 			text+="†"+play.getFunds();
+			text+="†"+play.getFees();
 		}
 		text+="¶";
 		for(k=0;k<play.getSatellites().size();k++){
@@ -183,6 +184,7 @@ public class Save {
 				text+="±"+((SwarmPart) sate).getDimensions().getWidth();
 				text+="±"+((SwarmPart) sate).getDimensions().getThickness();
 			}
+			text+="±"+sate.getModele();
 		}
 		text+="¶";
 		for(k=0;k<this.stars.size();k++){
@@ -259,7 +261,8 @@ public class Save {
 								Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 								Satellite[16],Double.parseDouble(Satellite[17])), 
 								new PanelDimensions(Double.parseDouble(Satellite[19]), 
-								Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
+								Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21])),
+								Satellite[22]));
 						this.satellites.add(new SwarmPart(new Coordinates(Double.parseDouble(Satellite[1]),
 								Double.parseDouble(Satellite[2]),Double.parseDouble(Satellite[3])),
 								new Coordinates(Double.parseDouble(Satellite[4]),
@@ -272,11 +275,13 @@ public class Save {
 								Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 								Satellite[16],Double.parseDouble(Satellite[17])),
 								new PanelDimensions(Double.parseDouble(Satellite[19]), 
-								Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
+								Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21])),
+								Satellite[22]));
 					}
 				}
-				Plas.add(new Player(Sats,Player[0],Integer.parseInt(Player[2])));
-				this.players.add(new Player(Sats,Player[0],Integer.parseInt(Player[2])));
+				Plas.add(new Player(Sats,Player[0],Integer.parseInt(Player[2]),Integer.parseInt(Player[3])));
+				this.players.add(new Player(Sats,Player[0],Integer.parseInt(Player[2]),
+						Integer.parseInt(Player[3])));
 			}
 			Cors.add(new Corporation(Plas,Corporation[0],Integer.parseInt(Corporation[2])));
 			this.corporations.add(new Corporation(Plas,Corporation[0],Integer.parseInt(Corporation[2])));
@@ -302,7 +307,7 @@ public class Save {
 							Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 							Satellite[16],Double.parseDouble(Satellite[17])),
 							new PanelDimensions(Double.parseDouble(Satellite[19]), 
-							Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
+							Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21])),Satellite[22]));
 					this.satellites.add(new SwarmPart(new Coordinates(Double.parseDouble(Satellite[1]),
 							Double.parseDouble(Satellite[2]),Double.parseDouble(Satellite[3])),
 							new Coordinates(Double.parseDouble(Satellite[4]),
@@ -315,11 +320,11 @@ public class Save {
 							Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 							Satellite[16],Double.parseDouble(Satellite[17])),
 							new PanelDimensions(Double.parseDouble(Satellite[19]), 
-							Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
+							Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21])),Satellite[22]));
 				}
 			}
-			Plas.add(new Player(Sats,Player[0],Integer.parseInt(Player[2])));
-			this.players.add(new Player(Sats,Player[0],Integer.parseInt(Player[2])));
+			Plas.add(new Player(Sats,Player[0],Integer.parseInt(Player[2]),Integer.parseInt(Player[3])));
+			this.players.add(new Player(Sats,Player[0],Integer.parseInt(Player[2]),Integer.parseInt(Player[3])));
 		}
 		Satellites = Arrays[2].split("Š");
 		Sats = new ArrayList<Satellite>();
@@ -338,7 +343,7 @@ public class Save {
 						Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 						Satellite[16],Double.parseDouble(Satellite[17])),
 						new PanelDimensions(Double.parseDouble(Satellite[19]), 
-						Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
+						Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21])),Satellite[22]));
 				this.satellites.add(new SwarmPart(new Coordinates(Double.parseDouble(Satellite[1]),
 						Double.parseDouble(Satellite[2]),Double.parseDouble(Satellite[3])),
 						new Coordinates(Double.parseDouble(Satellite[4]),
@@ -351,7 +356,7 @@ public class Save {
 						Double.parseDouble(Satellite[14]),Double.parseDouble(Satellite[15])),
 						Satellite[16],Double.parseDouble(Satellite[17])),
 						new PanelDimensions(Double.parseDouble(Satellite[19]), 
-						Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21]))));
+						Double.parseDouble(Satellite[20]), Double.parseDouble(Satellite[21])),Satellite[22]));
 			}
 		}
 		Stars = Arrays[3].split("Š");
@@ -362,6 +367,63 @@ public class Save {
 					Double.parseDouble(Star[3])),Star[0],Double.parseDouble(Star[4])));
 			this.stars.add(new Star(new Coordinates(Double.parseDouble(Star[1]),Double.parseDouble(Star[2]),
 					Double.parseDouble(Star[3])),Star[0],Double.parseDouble(Star[4])));
+		}
+	}
+	public void addCorporation(Corporation corp) {
+		this.corporations.add(corp);
+	}
+	public void addPlayer(Player player) {
+		this.players.add(player);
+	}
+	public ArrayList<Satellite> getSatellites() {
+		return this.satellites;
+	}
+	public void addSatellite(SwarmPart sat) {
+		this.satellites.add(sat);
+	}
+	public void displayName(int n) {
+		int i;
+		System.out.print("\r");
+		for(i=0;i<n;i++) System.out.print("\t");
+		System.out.print("Corporations : \r");
+		for(i=0;i<this.corporations.size();i++){
+			this.corporations.get(i).displayName(n+1);
+		}
+		System.out.print("\r");
+		for(i=0;i<n;i++) System.out.print("\t");
+		System.out.print("Joueurs : \r");
+		for(i=0;i<this.players.size();i++){
+			this.players.get(i).displayName(n+1);
+		}
+		System.out.print("\r");
+		for(i=0;i<n;i++) System.out.print("\t");
+		System.out.print("Satellites : \r");
+		for(i=0;i<this.satellites.size();i++){
+			this.satellites.get(i).displayName(n+1);
+		}
+		System.out.print("\r");
+		for(i=0;i<n;i++) System.out.print("\t");
+		System.out.print("Astres : \r");
+		for(i=0;i<this.stars.size();i++){
+			this.stars.get(i).displayName(n+1);
+		}
+	}
+	public void addStar(Star sun) {
+		this.stars.add(sun);
+	}
+	public void update(int n) {
+		int i;
+		for(i=0;i<this.corporations.size();i++){
+			this.corporations.get(i).update(n);
+		}
+		for(i=0;i<this.players.size();i++){
+			this.players.get(i).update(n);
+		}
+		for(i=0;i<this.satellites.size();i++){
+			this.satellites.get(i).update(n);
+		}
+		for(i=0;i<this.stars.size();i++){
+			this.stars.get(i).update(n);
 		}
 	}
 }
