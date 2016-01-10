@@ -20,6 +20,10 @@ public class SwarmPart extends Satellite {
 		this.setSun(sun);
 		this.setType("SwarmPart");
 		this.setDimensions(panelDimensions);
+		this.setModele(modele);
+	}
+	private void setModele(String modele) {
+		this.modele=modele;
 	}
 	public SwarmPart(int size) {
 		this(new Coordinates(),new Coordinates(),new Coordinates(),0,0,0,size,new Star(),new PanelDimensions(),

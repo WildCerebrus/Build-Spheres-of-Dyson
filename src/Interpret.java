@@ -24,9 +24,14 @@ public class Interpret {
 			this.doNewSatellite();
 		} else if(code.equals("new_star")){
 			this.doNewStar();
+		} else if(code.equals("show_save")){
+			this.doShowSave();
 		} else {
 			throw new CommandException("instruction inexistante");
 		}
+	}
+	private void doShowSave() {
+		this.save.displayName(0);
 	}
 	private void doNewStar() throws IOException {
 		System.out.println("\rStar's name : ");
@@ -54,6 +59,7 @@ public class Interpret {
 		System.out.println("new_player");
 		System.out.println("new_satellite");
 		System.out.println("new_star");
+		System.out.println("show_save");
 		System.out.println("exit");
 	}
 	public boolean exit(){

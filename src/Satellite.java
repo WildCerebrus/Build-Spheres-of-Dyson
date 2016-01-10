@@ -61,7 +61,7 @@ public abstract class Satellite {
 	}
 	public void displayName(int n) {
 		int i;
-		String s="le satellite n°"+this.id+" est un "+this.getModele()+" et est en "+
+		String s="le satellite n°"+this.id+" est un "+this.getType()+" de modèle "+this.getModele()+" et est en "+
 					this.position.getX()+"\t"+this.position.getY()+"\t"+this.position.getZ();
 		for(i=0;i<n;i++){
 			System.out.print("\t");
