@@ -6,7 +6,7 @@ public class Coordinates {
 		this(random(),random(),random());
 	}
 	private static double random() {
-		return Math.pow(10, 9)*(Math.random()-0.5);
+		return 2*Math.pow(10, 11)*(Math.random()-0.5);
 	}
 	public Coordinates(double x, double y, double z) { //déclaration de type double
 		this.setX(x);
