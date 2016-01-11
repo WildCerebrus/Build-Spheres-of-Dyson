@@ -16,51 +16,58 @@ public class Interpret {
 			this.doExit();
 		} else if(code.equals("menu")){
 			this.doMenu();
-		} else if(code.equals("new_corporation")){
+		} else if(code.equals("nc")){
 			this.doNewCorporation();
-		} else if(code.equals("new_player")){
+		} else if(code.equals("nj")){
 			this.doNewPlayer();
-		} else if(code.equals("new_satellite")){
+		} else if(code.equals("ns")){
 			this.doNewSatellite();
-		} else if(code.equals("new_star")){
+		} else if(code.equals("na")){
 			this.doNewStar();
-		} else if(code.equals("show_save")){
+		} else if(code.equals("ms")){
 			this.doShowSave();
+		} else if(code.equals("up")){
+			this.doUpdate();
 		} else {
 			throw new CommandException("instruction inexistante");
 		}
+	}
+	private void doUpdate() throws NumberFormatException, IOException {
+		System.out.print("\rDe combien de secondes voulez-vous avancer ?");
+		this.save.update(Integer.parseInt(this.in.readLine()));
 	}
 	private void doShowSave() {
 		this.save.displayName(0);
 	}
 	private void doNewStar() throws IOException {
-		System.out.println("\rStar's name : ");
+		System.out.print("\rNom de l'astre : ");
 		this.save.addStar(new Star(this.in.readLine()));
 	}
 	private void doNewSatellite() throws IOException {
-		System.out.print("\rSatellite's type : ");
+		System.out.print("\rType du Satellite (SwarmPart) : ");
 		String s = new String(this.in.readLine());
 		if(s.equals("SwarmPart")) this.save.addSatellite(new SwarmPart());
 	}
 	private void doNewPlayer() throws IOException {
-		System.out.print("\rPlayer's name : ");
+		System.out.print("\rNom du Joueur : ");
 		this.save.addPlayer(new Player(new String(this.in.readLine())));
 	}
 	private void doNewCorporation() throws IOException {
-		System.out.print("\rCorporation's name :");
+		System.out.print("\rNom de la Corporation :");
 		this.save.addCorporation(new Corporation(new String(this.in.readLine())));
 	}
 	private void doExit(){
 		this.exit=true;
 	}
 	public void doMenu(){
-		System.out.println("menu");
-		System.out.println("new_corporation");
-		System.out.println("new_player");
-		System.out.println("new_satellite");
-		System.out.println("new_star");
-		System.out.println("show_save");
-		System.out.println("exit");
+		System.out.println("menu : affiche le menu");
+		System.out.println("nc : crée une nouvelle corporation");
+		System.out.println("nj : crée un nouveau joueur");
+		System.out.println("ns : crée un nouveau satellite");
+		System.out.println("na : crée un nouvel astre");
+		System.out.println("ms : montre la sauvegarde");
+		System.out.println("up : avance dans le temps");
+		System.out.println("exit : ferme le programme");
 	}
 	public boolean exit(){
 		return this.exit;
