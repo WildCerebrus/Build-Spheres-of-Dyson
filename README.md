@@ -8,11 +8,11 @@ The current interface and the following text is in french. If your interested in
   
   	Les classes et leurs usages :
   	
-  		- BuildSpheresofDyson : le "main" il sert d'interface textuelle pour l'utilisateur, elle est en cours d'amélioration et d'aggrandissement
+  		- BuildSpheresofDyson : le "main" il sert d'interface textuelle pour l'utilisateur
   		- CommandException : Exception utilisée en cas d'utilisation de commande inexistante ou mal écrite
   		- Coordinates : classe de coordonnnées 3D des satellites et des astres
   		- Corporation : classe de corporation (alliance économique de plusieurs joueurs)
-  		- Interpret : classe qui interprète les commandes textuelles pour en effectuer les actions
+  		- Interpret : classe qui interprète les commandes textuelles pour en effectuer les actions, elle est en cours d'amélioration et d'aggrandissement
   		- PanelDimensions : classe de gestion des dimensions des SwarmPart
   		- Player : classe de joueur qui détient une liste de Satellite
   		- Satellite : classe abstraite qui regroupe les méthodes et les données génériques des différents types de satellites

@@ -426,4 +426,32 @@ public class Save {
 			this.stars.get(i).update(n);
 		}
 	}
+	public Corporation seekCorporation(String s) {
+		int i;
+		for(i=0;i<this.corporations.size();i++){
+			if(this.corporations.get(i).getName().equals(s)) return this.corporations.get(i);
+		}
+		return null;
+	}
+	public Player seekPlayer(String s){
+		int i;
+		for(i=0;i<this.players.size();i++){
+			if(this.players.get(i).getPseudo().equals(s)) return this.players.get(i);
+		}
+		return null;
+	}
+	public Satellite seekSatellite(String s){
+		int i;
+		for(i=0;i<this.satellites.size();i++){
+			if(this.satellites.get(i).getId()==Integer.parseInt(s)) return this.satellites.get(i); 
+		}
+		return null;
+	}
+	public Star seekStar(String s){
+		int i;
+		for(i=0;i<this.stars.size();i++){
+			if(this.stars.get(i).getName().equals(s)) return this.stars.get(i);
+		}
+		return null;
+	}
 }
