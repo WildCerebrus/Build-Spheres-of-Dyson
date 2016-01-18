@@ -4,6 +4,8 @@ Create virtual spheres of dyson, alone or with a community // Help the humanity 
 The current interface and the following text is in french. If your interested in this but not fluent in french, 
   please contact me (Mathieu ALTHUSER) @ mathieu.althuser@uha.fr or mathieu.althuser@gmail.com (I use the first one more frenquently)
 
+  Version 0.0.1(18/01/2016) : Implémentation du modificateur en ligne de commande
+
   Version 0.0 (13/01/2016) : Création du ReadMe
   
   	Les classes et leurs usages :

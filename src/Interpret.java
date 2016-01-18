@@ -91,20 +91,74 @@ public class Interpret {
 		s=this.in.readLine()+cas;
 		switch(s){
 			case "p1" : {
-				System.out.print("Que voulez-vous modifier aux joueurs de "+corporation.getName()); 
-				cas = 11;
+				System.out.print("Comment voulez-vous modifier les joueurs de "+corporation.getName()+" ? "); 
+				cas = 11; //TODO need suite
 			} break;
 			case "n1" : {
 				System.out.print("Quel nom voulez-vous donner à la corporation ? ");
 				cas = 12;
-			} break;
+			} break; //TODO need suite
 			case "f1" : {
-				System.out.print("Quels fonds voulez-vous attribuer à "+corporation.getName());
+				System.out.print("Comment voulez-vous modifier les fonds de "+corporation.getName()+" ? ");
 				cas = 13;
-			} break;
-			//TODO Continuer le switch
+			} break; //TODO need suite
+			case "s2" : {
+				System.out.print("Comment voulez-vous modifier les satellites de "+player.getPseudo()+" ? ");
+				cas = 21;
+			} break; //TODO need suite
+			case "p2" : {
+				System.out.print("Quel pseudo voulez-vous donner au joueur ? ");
+				cas = 22;
+			} break; //TODO need suite
+			case "fu2" : {
+				System.out.print("Comment voulez-vous modifier les fonds de "+player.getPseudo()+" ? ");
+				cas = 23;
+			} break; //TODO need suite
+			case "fe2" : {
+				System.out.print("Comment voulez-vous modifier la taxe d'adhésion de "+player.getPseudo()+" ? ");
+				cas = 24;
+			} break; //TODO need suite
+			case "p3" : {
+				System.out.print("Comment voulez-vous modifier la position du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				cas = 31;
+			} break; //TODO need suite
+			case "sp3" : {
+				System.out.print("Comment voulez-vous modifier la vitesse du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				cas = 32;
+			} break; //TODO need suite
+			case "m3" : {
+				System.out.print("Comment voulez-vous modifier la masse du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				cas = 33;
+			} break; //TODO need suite
+			case "e3" : {
+				System.out.print("Comment voulez-vous modifier l'énergie du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				cas = 34;
+			} break; //TODO need suite
+			case "st3" : {
+				System.out.print("Comment voulez-vous modifier l'état du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				cas = 35;
+			} break; //TODO need suite
+			case "id3" : {
+				System.out.print("Quel identifiant voulez-vous donnez au satellite ? ");
+				cas = 36;
+			} break; //TODO need suite
+			case "su3" : {
+				System.out.print("Comment voulez-vous modifier l'astre du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				cas = 37;
+			} break; //TODO need suite
+			case "p4" : {
+				System.out.print("Comment voulez-vous modifier la position de "+star.getName()+" ? ");
+				cas = 41;
+			} break; //TODO need suite
+			case "n4" : {
+				System.out.print("Quel nom voulez-vous donnez à l'astre ? ");
+				cas = 42;
+			} break; //TODO need suite
+			case "m4" : {
+				System.out.print("Comment voulez-vous modifier la masse de "+star.getName()+" ? ");
+				cas = 43;
+			} break; //TODO need suite
 		}
-		//TODO Continuer à demander les données à modifier
 	}
 	private void doUpdate() throws NumberFormatException, IOException {
 		System.out.print("\rDe combien de secondes voulez-vous avancer ?");
