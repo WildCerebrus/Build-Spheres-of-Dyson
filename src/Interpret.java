@@ -34,7 +34,7 @@ public class Interpret {
 			throw new CommandException("instruction inexistante");
 		}
 	}
-	private void doMod() throws IOException, CommandException {
+	private int doMod() throws IOException, CommandException {
 		System.out.print("\rQue souhaitez-vous modifier (c/j/s/a) ? ");
 		String s = this.in.readLine();
 		int cas=0;
@@ -91,25 +91,25 @@ public class Interpret {
 		s=this.in.readLine()+cas;
 		switch(s){
 			case "p1" : {
-				System.out.print("Comment voulez-vous modifier les joueurs de "+corporation.getName()+" ? "); 
-				cas = 11; //TODO need suite
+				System.out.print("Comment voulez-vous modifier les joueurs de "+corporation.getName()+" (s/m/t) ? "); 
+				cas = 11;
 			} break;
 			case "n1" : {
 				System.out.print("Quel nom voulez-vous donner à la corporation ? ");
 				cas = 12;
-			} break; //TODO need suite
+			} break;
 			case "f1" : {
-				System.out.print("Comment voulez-vous modifier les fonds de "+corporation.getName()+" ? ");
+				System.out.print("Comment voulez-vous modifier les fonds de "+corporation.getName()+" (a/s) ? ");
 				cas = 13;
-			} break; //TODO need suite
+			} break;
 			case "s2" : {
-				System.out.print("Comment voulez-vous modifier les satellites de "+player.getPseudo()+" ? ");
+				System.out.print("Comment voulez-vous modifier les satellites de "+player.getPseudo()+" (s/m/t) ? ");
 				cas = 21;
-			} break; //TODO need suite
+			} break;
 			case "p2" : {
 				System.out.print("Quel pseudo voulez-vous donner au joueur ? ");
 				cas = 22;
-			} break; //TODO need suite
+			} break;
 			case "fu2" : {
 				System.out.print("Comment voulez-vous modifier les fonds de "+player.getPseudo()+" ? ");
 				cas = 23;
@@ -141,7 +141,7 @@ public class Interpret {
 			case "id3" : {
 				System.out.print("Quel identifiant voulez-vous donnez au satellite ? ");
 				cas = 36;
-			} break; //TODO need suite
+			} break;
 			case "su3" : {
 				System.out.print("Comment voulez-vous modifier l'astre du "+satellite.getType()+" "+satellite.getId()+" ? ");
 				cas = 37;
@@ -153,12 +153,72 @@ public class Interpret {
 			case "n4" : {
 				System.out.print("Quel nom voulez-vous donnez à l'astre ? ");
 				cas = 42;
-			} break; //TODO need suite
+			} break;
 			case "m4" : {
 				System.out.print("Comment voulez-vous modifier la masse de "+star.getName()+" ? ");
 				cas = 43;
 			} break; //TODO need suite
+			default : throw new CommandException("entrée invalide");
 		}
+		s=this.in.readLine();
+		switch(cas){
+			case 11 : {
+				switch(s){
+					case "s" : {
+						System.out.print("Quel joueur de "+corporation.getName()+" voulez-vous modifier ? ");
+						cas = 111; //TODO need suite
+					} break;
+					case "m" : {
+						System.out.print("Combien de joueurs de "+corporation.getName()+" voulez-vous modifier ? ");
+						cas = 112; //TODO need suite
+					} break;
+					case "t" : {
+						System.out.print("Comment voulez-vous modifier tous les joueurs de "+corporation.getName()+" ? ");
+						cas = 113; //TODO need suite
+					} break;
+				}
+			} break;
+			case 12 : {
+				corporation.setName(s);
+				return 0;
+			}
+			case 13 : {
+				switch(s){
+					case "a" : cas = 131; break; //TODO need suite
+					case "s" : cas = 132; break; //TODO need suite
+				}
+			}
+			case 21 : {
+				switch(s){
+					case "s" : {
+						System.out.print("Quel satellite de "+player.getPseudo()+" voulez-vous modifier ? ");
+						cas = 211; //TODO need suite
+					} break;
+					case "m" : {
+						System.out.print("Combien de satellites de "+player.getPseudo()+" voulez-vous modifier ? ");
+						cas = 212; //TODO need suite
+					} break;
+					case "t" : {
+						System.out.print("Comment voulez-vous modifier tous les satellites de "+player.getPseudo()+" ? ");
+						cas = 213; //TODO need suite
+					} break;
+				}
+			}
+			case 22 : {
+				player.setPseudo(s);
+				return 0;
+			}
+			case 36 : {
+				satellite.setId(Integer.parseInt(s));
+				return 0;
+			}
+			case 42 : {
+				star.setName(s);
+				return 0;
+			}
+		}
+		
+		return 0;
 	}
 	private void doUpdate() throws NumberFormatException, IOException {
 		System.out.print("\rDe combien de secondes voulez-vous avancer ?");
