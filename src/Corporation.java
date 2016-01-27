@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 //Classe de Corporation (Alliance, Groupe de Players)
 public class Corporation {
@@ -73,5 +76,53 @@ public class Corporation {
 			this.players.get(i).setFunds(-n*j);
 			this.pooledFunds+=j*n;
 		}
+	}
+	public Player seekPlayer(String s) {
+		int i;
+		for(i=0;i<this.players.size();i++){
+			if(this.players.get(i).getPseudo().equals(s)) return this.players.get(i);
+		}
+		return null;
+	}
+	public int doMod() throws Exception {
+		String s="";
+		System.out.println("Que voulez-vous modifier au "+name+" (j/n/p) ? ");
+		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
+		switch(s){
+			case "j" : return doModPlayer();
+			case "n" : return doModName();
+			case "p" : return doModFunds();
+			default : throw new CommandException("entrée incohérente");
+		}
+	}
+	private int doModFunds() throws IOException, CommandException {
+		String s="";
+		System.out.println("Voulez-vous ajouter (a) ou régler (s) les fonds ? ");
+		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
+		System.out.println("Quels fonds voulez-vous entrer ? ");
+		switch(s){
+			case "a" : {
+				this.setPooledFunds(this.getPooledFunds()+Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine()));
+				return 0;
+			}
+			case "s" : {
+				this.setPooledFunds(Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine()));
+				return 0;
+			}
+			default : throw new CommandException("entrée incohérente");
+		}
+	}
+	private int doModName() throws IOException {
+		System.out.println("Quel nom voulez-vos donnez à la corporation ? ");
+		this.setName(new BufferedReader(new InputStreamReader(System.in)).readLine());		
+		return 0;
+	}
+	private int doModPlayer() throws Exception {
+		String s="";
+		System.out.println("Quel joueur voulez-vous modifier (pseudo) ? ");
+		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
+		Player p = seekPlayer(s);
+		if(p!=null) return p.doMod();
+		throw new Exception("Joueur non-trouvé");
 	}
 }

@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 //Classe de déclaration des étoiles autour desquelles ont construit les SoD
 public class Star {
 	private Coordinates position=new Coordinates(); //position du centre gravitationnel de l'astre
@@ -52,6 +56,38 @@ public class Star {
 	}
 	public void update(int n) {
 		// TODO Auto-generated method stub
-		
+	}
+	public int doMod() throws Exception {
+		String s="";
+		System.out.println("Que voulez-vous modifier à "+this.name+" (p/n/m) ? ");
+		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
+		switch(s){
+			case "p" : return this.position.doMod();
+			case "n" : return doModName();
+			case "m" : return doModMass();
+			default : throw new CommandException("entrée incohérente");
+		}
+	}
+	private int doModMass() throws IOException, CommandException {
+		String s="";
+		System.out.println("Voulez-vous ajouter (a) ou régler (s) la masse ? ");
+		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
+		System.out.println("Quelle masse voulez-vous entrer ? ");
+		switch(s){
+			case "a" : {
+				this.setMass(this.getMass()+Double.parseDouble(new BufferedReader(new InputStreamReader(System.in)).readLine()));
+				return 0;
+			}
+			case "s" : {
+				this.setMass(Double.parseDouble(new BufferedReader(new InputStreamReader(System.in)).readLine()));
+				return 0;
+			}
+			default : throw new CommandException("entrée incohérente");
+		}
+	}
+	private int doModName() throws IOException {
+		System.out.println("Quel nom voulez-vos donnez à l'astre ? ");
+		this.setName(new BufferedReader(new InputStreamReader(System.in)).readLine());		
+		return 0;
 	}
 }

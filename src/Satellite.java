@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 //Classe générique abstraite de satellite
 public abstract class Satellite {
 	private Coordinates position, speed, acceleration; //coordonnées du satellite (lecture dépendant du type)
@@ -70,4 +72,5 @@ public abstract class Satellite {
 	}
 	public abstract String getModele();
 	public abstract void update(int n);
+	public abstract int doMod() throws IOException, CommandException, Exception;
 }

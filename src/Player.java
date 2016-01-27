@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 //Classe de joueur
 public class Player {
@@ -72,6 +75,71 @@ public class Player {
 	}
 	public void update(int n) {
 		// TODO Auto-generated method stub
-		
+	}
+	public int doMod() throws Exception {
+		String s="";
+		System.out.println("Que voulez-vous modifier au "+pseudo+" (s/p/f/c) ? ");
+		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
+		switch(s){
+			case "s" : return doModSat();
+			case "p" : return doModPseudo();
+			case "f" : return doModFunds();
+			case "c" : return doModFees();
+			default : throw new CommandException("entrée incohérente");
+		}
+	}
+	private int doModFees() throws IOException, CommandException {
+		String s="";
+		System.out.println("Voulez-vous ajouter (a) ou régler (s) la taxe corporative ? ");
+		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
+		System.out.println("Quelle taxe voulez-vous entrer ? ");
+		switch(s){
+			case "a" : {
+				fees=(this.getFees()+Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine()));
+				return 0;
+			}
+			case "s" : {
+				fees=(Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine()));
+				return 0;
+			}
+			default : throw new CommandException("entrée incohérente");
+		}
+	}
+	private int doModFunds() throws IOException, CommandException {
+		String s="";
+		System.out.println("Voulez-vous ajouter (a) ou régler (s) les fonds ? ");
+		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
+		System.out.println("Quels fonds voulez-vous entrer ? ");
+		switch(s){
+			case "a" : {
+				this.setFunds(this.getFunds()+Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine()));
+				return 0;
+			}
+			case "s" : {
+				this.setFunds(Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine()));
+				return 0;
+			}
+			default : throw new CommandException("entrée incohérente");
+		}
+	}
+	private int doModPseudo() throws IOException {
+		System.out.println("Quel pseudo voulez-vos donnez au joueur ? ");
+		this.setPseudo(new BufferedReader(new InputStreamReader(System.in)).readLine());		
+		return 0;
+	}
+	private int doModSat() throws Exception {
+		String s="";
+		System.out.println("Quel satellite voulez-vous modifier (id) ? ");
+		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
+		Satellite sat = seekSat(Integer.parseInt(s));
+		if(sat!=null) return sat.doMod();
+		throw new Exception("Satellite non-trouvé");
+	}
+	private Satellite seekSat(int n) {
+		int i;
+		for(i=0;i<satellites.size();i++){
+			if(satellites.get(i).getId()==n) return satellites.get(i);
+		}
+		return null;
 	}
 }
