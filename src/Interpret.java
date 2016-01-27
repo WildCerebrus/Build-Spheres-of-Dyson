@@ -111,53 +111,53 @@ public class Interpret {
 				cas = 22;
 			} break;
 			case "fu2" : {
-				System.out.print("Comment voulez-vous modifier les fonds de "+player.getPseudo()+" ? ");
+				System.out.print("Comment voulez-vous modifier les fonds de "+player.getPseudo()+" (a/s) ? ");
 				cas = 23;
-			} break; //TODO need suite
+			} break;
 			case "fe2" : {
-				System.out.print("Comment voulez-vous modifier la taxe d'adhésion de "+player.getPseudo()+" ? ");
+				System.out.print("Comment voulez-vous modifier la taxe d'adhésion de "+player.getPseudo()+" (a/s) ? ");
 				cas = 24;
-			} break; //TODO need suite
+			} break;
 			case "p3" : {
-				System.out.print("Comment voulez-vous modifier la position du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				System.out.print("Comment voulez-vous modifier la position du "+satellite.getType()+" "+satellite.getId()+" (x/y/z/a) ? ");
 				cas = 31;
-			} break; //TODO need suite
+			} break;
 			case "sp3" : {
-				System.out.print("Comment voulez-vous modifier la vitesse du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				System.out.print("Comment voulez-vous modifier la vitesse du "+satellite.getType()+" "+satellite.getId()+" (a/s) ? ");
 				cas = 32;
-			} break; //TODO need suite
+			} break;
 			case "m3" : {
-				System.out.print("Comment voulez-vous modifier la masse du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				System.out.print("Comment voulez-vous modifier la masse du "+satellite.getType()+" "+satellite.getId()+" (a/s) ? ");
 				cas = 33;
-			} break; //TODO need suite
+			} break;
 			case "e3" : {
-				System.out.print("Comment voulez-vous modifier l'énergie du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				System.out.print("Comment voulez-vous modifier l'énergie du "+satellite.getType()+" "+satellite.getId()+" (a/s) ? ");
 				cas = 34;
-			} break; //TODO need suite
+			} break;
 			case "st3" : {
-				System.out.print("Comment voulez-vous modifier l'état du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				System.out.print("Comment voulez-vous modifier l'état du "+satellite.getType()+" "+satellite.getId()+" (a/s) ? ");
 				cas = 35;
-			} break; //TODO need suite
+			} break;
 			case "id3" : {
 				System.out.print("Quel identifiant voulez-vous donnez au satellite ? ");
 				cas = 36;
 			} break;
 			case "su3" : {
-				System.out.print("Comment voulez-vous modifier l'astre du "+satellite.getType()+" "+satellite.getId()+" ? ");
+				System.out.print("Que voulez-vous modifier de l'astre du "+satellite.getType()+" "+satellite.getId()+" (p/n/m/a) ? ");
 				cas = 37;
-			} break; //TODO need suite
+			} break;
 			case "p4" : {
-				System.out.print("Comment voulez-vous modifier la position de "+star.getName()+" ? ");
+				System.out.print("Comment voulez-vous modifier la position de "+star.getName()+" (a/s) ? ");
 				cas = 41;
-			} break; //TODO need suite
+			} break;
 			case "n4" : {
 				System.out.print("Quel nom voulez-vous donnez à l'astre ? ");
 				cas = 42;
 			} break;
 			case "m4" : {
-				System.out.print("Comment voulez-vous modifier la masse de "+star.getName()+" ? ");
+				System.out.print("Comment voulez-vous modifier la masse de "+star.getName()+" (a/s) ? ");
 				cas = 43;
-			} break; //TODO need suite
+			} break;
 			default : throw new CommandException("entrée invalide");
 		}
 		s=this.in.readLine();
@@ -176,6 +176,7 @@ public class Interpret {
 						System.out.print("Comment voulez-vous modifier tous les joueurs de "+corporation.getName()+" ? ");
 						cas = 113; //TODO need suite
 					} break;
+					default : throw new CommandException("entrée incohérente");
 				}
 			} break;
 			case 12 : {
@@ -186,8 +187,9 @@ public class Interpret {
 				switch(s){
 					case "a" : cas = 131; break; //TODO need suite
 					case "s" : cas = 132; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
 				}
-			}
+			} break;
 			case 21 : {
 				switch(s){
 					case "s" : {
@@ -202,22 +204,113 @@ public class Interpret {
 						System.out.print("Comment voulez-vous modifier tous les satellites de "+player.getPseudo()+" ? ");
 						cas = 213; //TODO need suite
 					} break;
+					default : throw new CommandException("entrée incohérente");
 				}
-			}
+			} break;
 			case 22 : {
 				player.setPseudo(s);
 				return 0;
 			}
+			case 23 : {
+				switch(s){
+					case "s" : cas = 231; break; //TODO need suite
+					case "a" : cas = 232; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
+				}
+			} break;
+			case 24 : {
+				switch(s){
+					case "s" : cas = 241; break; //TODO need suite
+					case "a" : cas = 242; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
+				}
+			} break;
+			case 31 : {
+				switch(s){
+					case "x" : {
+						System.out.print("Comment souhaitez-vous modifier la coordonnée x du satellite (a/s) ? ");
+						cas = 311;
+					} break; //TODO need suite
+					case "y" : {
+						System.out.print("Comment souhaitez-vous modifier la coordonnée y du satellite (a/s) ? ");
+						cas = 312;
+					} break; //TODO need suite
+					case "z" : {
+						System.out.print("Comment souhaitez-vous modifier la coordonnée z du satellite (a/s) ? ");
+						cas = 313;
+					} break; //TODO need suite
+					case "a" : {
+						System.out.print("Vous avez pris toutes. Quelle valeur voulez-vous donnez à x ? ");
+						satellite.getPosition().setX(Double.parseDouble(in.readLine()));
+						System.out.print("Et y ? ");
+						satellite.getPosition().setY(Double.parseDouble(in.readLine()));
+						System.out.print("Et z ? ");
+						satellite.getPosition().setX(Double.parseDouble(in.readLine()));
+						return 0;
+					}
+					default : throw new CommandException("entrée incohérente");
+				}
+			} break;
+			case 32 : {
+				switch(s){
+					case "s" : cas = 321; break; //TODO need suite
+					case "a" : cas = 322; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
+				}
+			} break;
+			case 33 : {
+				switch(s){
+					case "s" : cas = 331; break; //TODO need suite
+					case "a" : cas = 332; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
+				}
+			} break;
+			case 34 : {
+				switch(s){
+					case "s" : cas = 341; break; //TODO need suite
+					case "a" : cas = 342; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
+				}
+			} break;
+			case 35 : {
+				switch(s){
+					case "s" : cas = 351; break; //TODO need suite
+					case "a" : cas = 352; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
+				}
+			} break;
 			case 36 : {
 				satellite.setId(Integer.parseInt(s));
 				return 0;
+			}
+			case 37 : {
+				switch(s){
+					case "p" : cas = 371; break; //TODO need suite
+					case "n" : cas = 372; break; //TODO need suite
+					case "m" : cas = 373; break; //TODO need suite
+					case "a" : cas = 374; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
+				}
+			}
+			case 41 : {
+				switch(s){
+					case "s" : cas = 411; break; //TODO need suite
+					case "a" : cas = 412; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
+				}
 			}
 			case 42 : {
 				star.setName(s);
 				return 0;
 			}
+			case 43 : {
+				switch(s){
+					case "s" : cas = 431; break; //TODO need suite
+					case "a" : cas = 432; break; //TODO need suite
+					default : throw new CommandException("entrée incohérente");
+				}
+			}
 		}
-		
 		return 0;
 	}
 	private void doUpdate() throws NumberFormatException, IOException {
