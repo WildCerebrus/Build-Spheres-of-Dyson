@@ -73,4 +73,7 @@ public abstract class Satellite {
 	public abstract String getModele();
 	public abstract void update(int n);
 	public abstract int doMod() throws IOException, CommandException, Exception;
+	public void end() throws Throwable {
+		this.finalize();
+	}
 }

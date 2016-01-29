@@ -11,7 +11,7 @@ public class Interpret {
 		this.save=new Save();
 		this.in=new BufferedReader(new InputStreamReader(System.in));
 	}
-	public void decode_execute(String code) throws Exception{
+	public void decode_execute(String code) throws Throwable{
 		if(code.equals("exit")){
 			this.doExit();
 		} else if(code.equals("menu")){
@@ -30,9 +30,55 @@ public class Interpret {
 			this.doUpdate();
 		} else if(code.equals("mod")){
 			this.doMod();
+		} else if(code.equals("spr")){
+			this.doSpr();
 		} else {
 			throw new CommandException("instruction inexistante");
 		}
+	}
+	private int doSpr() throws Throwable {
+		String s = "";
+		System.out.println("Que souhaitez-vous supprimer (c/p/s/a) ? ");
+		s=this.in.readLine();
+		switch(s){
+			case "c" : return doSprCorp();
+			case "p" : return doSprPlayer();
+			case "s" : return doSprSat();
+			case "a" : return doSprStar();
+			default : throw new CommandException("entrée incohérente");
+		}
+	}
+	private int doSprStar() throws Throwable {
+		String s = "";
+		System.out.println("Quel astre voulez-vous supprimer (nom) ? ");
+		s=this.in.readLine();
+		if(this.save.seekStar(s)==null) throw new Exception("Corporation innexistante");
+		this.save.seekStar(s).end();
+		return 0;
+	}
+	private int doSprSat() throws Throwable {
+		String s = "";
+		System.out.println("Quelle satellite voulez-vous supprimer (nom) ? ");
+		s=this.in.readLine();
+		if(this.save.seekSatellite(s)==null) throw new Exception("Corporation innexistante");
+		this.save.seekSatellite(s).end();
+		return 0;
+	}
+	private int doSprPlayer() throws Throwable {
+		String s = "";
+		System.out.println("Quel joueur voulez-vous supprimer (nom) ? ");
+		s=this.in.readLine();
+		if(this.save.seekPlayer(s)==null) throw new Exception("Corporation innexistante");
+		this.save.seekPlayer(s).end();
+		return 0;
+	}
+	private int doSprCorp() throws Throwable {
+		String s = "";
+		System.out.println("Quelle corporation voulez-vous supprimer (nom) ? ");
+		s=this.in.readLine();
+		if(this.save.seekCorporation(s)==null) throw new Exception("Corporation innexistante");
+		this.save.seekCorporation(s).end();
+		return 0;
 	}
 	private int doMod() throws Exception {
 		String s = "";
@@ -106,6 +152,7 @@ public class Interpret {
 		System.out.println("ms : montre la sauvegarde");
 		System.out.println("up : avance dans le temps");
 		System.out.println("mod : permet la modification d'une donnée");
+		System.out.println("spr : permet la suppression d'une donnée");
 		System.out.println("exit : ferme le programme");
 	}
 	public boolean exit(){

@@ -125,4 +125,7 @@ public class Corporation {
 		if(p!=null) return p.doMod();
 		throw new Exception("Joueur non-trouvé");
 	}
+	public void end() throws Throwable {
+		this.finalize();
+	}
 }

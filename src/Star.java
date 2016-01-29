@@ -90,4 +90,7 @@ public class Star {
 		this.setName(new BufferedReader(new InputStreamReader(System.in)).readLine());		
 		return 0;
 	}
+	public void end() throws Throwable {
+		this.finalize();
+	}
 }

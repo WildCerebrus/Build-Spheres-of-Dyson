@@ -2,7 +2,7 @@ import java.io.IOException;
 
 public class BuildSpheresofDyson {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Throwable {
 		Interpret interpret = new Interpret();
 		interpret.doMenu();
 		while(!interpret.exit()){

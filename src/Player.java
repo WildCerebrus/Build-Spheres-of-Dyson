@@ -142,4 +142,7 @@ public class Player {
 		}
 		return null;
 	}
+	public void end() throws Throwable {
+		this.finalize();
+	}
 }
