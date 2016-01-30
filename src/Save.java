@@ -2,6 +2,7 @@ import java.io.FileReader ;
 import java.io.FileWriter ;
 import java.io.BufferedReader ;
 import java.io.IOException ;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 //Classe de gestion de fichiers de sauvegarde
@@ -11,6 +12,7 @@ public class Save {
 	private ArrayList<Satellite> satellites=new ArrayList<Satellite>(); //liste des satellites
 	private ArrayList<Star> stars=new ArrayList<Star>(); //liste des astres
 	private String path="temp.bsod"; //sauvegarde par défaut
+	private BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
 	//de base les champs sont initialisés comme ci-dessus
 	public Save() {	}
 	//ou avec un path précis
@@ -453,5 +455,196 @@ public class Save {
 			if(this.stars.get(i).getName().equals(s)) return this.stars.get(i);
 		}
 		return null;
+	}
+	public int doAdd() throws Exception {
+		String s="";
+		System.out.println("Quel type d'élément voulez-vous ajouter (c/j/s/a) ? ");
+		s=this.in.readLine();
+		switch(s){
+			case "c" : return doAddCorp();
+			case "j" : return doAddPlayer();
+			case "s" : return doAddSat();
+			case "a" : return doAddStar();
+			default : throw new Exception("entrée incohérente");
+		}
+	}
+	private int doAddStar() throws Exception {
+		String s="";
+		System.out.println("Quelle méthode voulez-vous utiliser (def/spl/cpl) ? ");
+		s=this.in.readLine();
+		switch(s){
+			case "def" : return doAddStarDef();
+			case "spl" : return doAddStarSpl();
+			case "cpl" : return doAddStarCpl();
+			default : throw new Exception("entrée incohérente");
+		}
+	}
+	private int doAddStarCpl() throws NumberFormatException, IOException {
+		String s="";
+		System.out.println("Quel nom voulez-vous donnez ? ");
+		s=in.readLine();
+		System.out.println("Quel x ? ");
+		double x=Double.parseDouble(in.readLine());
+		System.out.println("Quel y ? ");
+		double y=Double.parseDouble(in.readLine());
+		System.out.println("Quel z ? ");
+		double z=Double.parseDouble(in.readLine());
+		System.out.println("Quelle masse ? ");
+		double mass=Double.parseDouble(in.readLine());
+		stars.add(new Star(new Coordinates(x,y,z),s,mass));
+		return 0;
+	}
+	private int doAddStarSpl() throws IOException {
+		String s="";
+		System.out.println("Quel nom voulez-vous donnez ? ");
+		s=this.in.readLine();
+		stars.add(new Star(s));
+		return 0;
+	}
+	private int doAddStarDef() {
+		stars.add(new Star());
+		return 0;
+	}
+	private int doAddSat() throws Exception {
+		String s="";
+		System.out.println("Voulez-vous ajouter un satellite à un joueur (j) ou créer un nouveau satellite (n) ? ");
+		s=this.in.readLine();
+		switch(s){
+			case "j" : return doAddSatJ();
+			case "n" : return doAddSatN();
+			default : throw new Exception("entrée incohérente");
+		}
+	}
+	private int doAddSatN() throws Exception {
+		String s="";
+		System.out.println("Quel type de satellite voulez-vous ajouter (sp) ? ");
+		s=this.in.readLine();
+		switch(s){
+			case "sp" : return doAddSwarmPart();
+			default : throw new Exception("entrée incohérente");
+		}
+	}
+	private int doAddSwarmPart() throws Exception {
+		String s="";
+		System.out.println("Quelle méthode voulez-vous utiliser (def/spl) ? ");
+		s=this.in.readLine();
+		switch(s){
+			case "def" : return doAddSwarmPartDef();
+			case "spl" : return doAddSwarmPartSpl();
+			default : throw new Exception("entrée incohérente");
+		}
+	}
+	private int doAddSwarmPartSpl() throws IOException {
+		String s="";
+		System.out.println("Quel id voulez-vous donnez ? ");
+		s=this.in.readLine();
+		satellites.add(new SwarmPart(Integer.parseInt(s)));
+		return 0;
+	}
+	private int doAddSwarmPartDef() {
+		satellites.add(new SwarmPart());
+		return 0;
+	}
+	private int doAddSatJ() throws Exception {
+		String s="";
+		System.out.println("Quel satellite voulez-vous ajouter ? ");
+		s=this.in.readLine();
+		Satellite sat = this.seekSatellite(s);
+		if(sat==null) throw new Exception("satellite inexistant");
+		String t="";
+		System.out.println("Chez quel joueur ? ");
+		t=this.in.readLine();
+		Player p = this.seekPlayer(t);
+		if(p==null) throw new Exception("joueur inexistant");
+		p.addSat(sat);
+		return 0;
+	}
+	private int doAddPlayer() throws Exception {
+		String s="";
+		System.out.println("Voulez-vous ajouter un joueur dans une corporation (c) ou créer un nouveau joueur (n) ? ");
+		s=this.in.readLine();
+		switch(s){
+			case "c" : return doAddPlayerC();
+			case "n" : return doAddPlayerN();
+			default : throw new Exception("entrée incohérente");
+		}
+	}
+	private int doAddPlayerN() throws Exception {
+		String s="";
+		System.out.println("Quelle méthode voulez-vous utiliser (def/spl/cpl) ? ");
+		s=this.in.readLine();
+		switch(s){
+			case "def" : return doAddPlayerDef();
+			case "spl" : return doAddPlayerSpl();
+			case "cpl" : return doAddPlayerCpl();
+			default : throw new Exception("entrée incohérente");
+		}
+	}
+	private int doAddPlayerCpl() throws IOException {
+		String s="";
+		System.out.println("Quel pseudo voulez-vous donnez ? ");
+		s=in.readLine();
+		String t="";
+		System.out.println("Quels fonds voulez-vous attribuer ? ");
+		t=in.readLine();
+		players.add(new Player(new ArrayList<Satellite>(),s,Integer.parseInt(t),0));
+		return 0;
+	}
+	private int doAddPlayerSpl() throws IOException {
+		String s="";
+		System.out.println("Quel pseudo voulez-vous donnez ? ");
+		s=this.in.readLine();
+		players.add(new Player(s));
+		return 0;
+	}
+	private int doAddPlayerDef() {
+		players.add(new Player());
+		return 0;
+	}
+	private int doAddPlayerC() throws Exception {
+		String s="";
+		System.out.println("Quel joueur voulez-vous ajouter ? ");
+		s=this.in.readLine();
+		Player p = this.seekPlayer(s);
+		if(p==null) throw new Exception("joueur inexistant");
+		String t="";
+		System.out.println("Dans quelle corporation ? ");
+		t=this.in.readLine();
+		Corporation c= this.seekCorporation(t);
+		if(c==null) throw new Exception("corporation inexistante");
+		c.addPlayer(p);
+		return 0;
+	}
+	private int doAddCorp() throws Exception {
+		String s="";
+		System.out.println("Quelle méthode voulez-vous utiliser (def/spl/cpl) ? ");
+		s=this.in.readLine();
+		switch(s){
+			case "def" : return doAddCorpDef();
+			case "spl" : return doAddCorpSpl();
+			case "cpl" : return doAddCorpCpl();
+			default : throw new Exception("entrée incohérente");
+		}
+	}
+	private int doAddCorpCpl() throws IOException {
+		String s="";
+		System.out.println("Quel nom voulez-vous donnez ? ");
+		s=in.readLine();
+		String t="";
+		System.out.println("Quels fonds voulez-vous attribuer ? ");
+		t=in.readLine();
+		corporations.add(new Corporation(new ArrayList<Player>(),s,Integer.parseInt(t)));
+		return 0;
+	}
+	private int doAddCorpSpl() throws IOException {
+		String s="";
+		System.out.println("Quel nom voulez-vous donnez ? ");
+		s=this.in.readLine();
+		corporations.add(new Corporation(s));
+		return 0;
+	}
+	private int doAddCorpDef() {
+		corporations.add(new Corporation());
+		return 0;
 	}
 }

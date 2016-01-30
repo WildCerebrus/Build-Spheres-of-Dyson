@@ -28,6 +28,8 @@ public class Interpret {
 			this.doShowSave();
 		} else if(code.equals("up")){
 			this.doUpdate();
+		} else if(code.equals("ajt")){
+			this.save.doAdd();
 		} else if(code.equals("mod")){
 			this.doMod();
 		} else if(code.equals("spr")){
@@ -151,8 +153,9 @@ public class Interpret {
 		System.out.println("na : crée un nouvel astre");
 		System.out.println("ms : montre la sauvegarde");
 		System.out.println("up : avance dans le temps");
+		System.out.println("ajt : permet l'ajout d'un élément");
 		System.out.println("mod : permet la modification d'une donnée");
-		System.out.println("spr : permet la suppression d'une donnée");
+		System.out.println("spr : permet la suppression d'un élément");
 		System.out.println("exit : ferme le programme");
 	}
 	public boolean exit(){
