@@ -61,6 +61,7 @@ public abstract class Satellite {
 	public void setType(String type) {
 		this.type = type;
 	}
+	//afficheur
 	public void displayName(int n) {
 		int i;
 		String s="le satellite n°"+this.id+" est un "+this.getType()+" de modèle "+this.getModele()+" et est en "+
@@ -70,9 +71,13 @@ public abstract class Satellite {
 		}
 		System.out.print(s);
 	}
+	//récupération du type de satellite
 	public abstract String getModele();
+	//mise à jour
 	public abstract void update(int n);
+	//modificateur
 	public abstract int doMod() throws IOException, CommandException, Exception;
+	//suppresseur
 	public void end() throws Throwable {
 		this.finalize();
 	}

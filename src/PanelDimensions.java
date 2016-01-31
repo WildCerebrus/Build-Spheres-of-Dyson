@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 //Classe de dimensions (en mètre) d'un satellite
 public class PanelDimensions {
 	private double length,width,thickness; //dimensions 3D en mètre
-	//déclaration à l'origine par défaut
+	//déclaration à 0 par défaut
 	public PanelDimensions() { 
 		this(0,0,0);
 	}
@@ -35,6 +35,7 @@ public class PanelDimensions {
 	public void setThickness(double thickness) {
 		this.thickness = thickness;
 	}
+	//modificateur
 	public int doMod() throws Exception {
 		String s="";
 		System.out.println("Quelle coordonnée voulez-vous changer et comment (xa/xs/ya/...) ? ");

@@ -23,9 +23,10 @@ public class Star {
 	public void translate(double dx, double dy, double dz) {
 		this.position.translate(dx, dy, dz);
 	}
+	//afficheur classique
 	@Override
 	public String toString() {
-		return "\r\t"+name+position.toString();
+		return "\r\t"+name+" "+position.toString();
 	}
 	public Coordinates getPosition() {		//getters et setters
 		return this.position;
@@ -45,6 +46,7 @@ public class Star {
 	public void setMass(double mass) {
 		this.mass = mass;
 	}
+	//afficheur du save
 	public void displayName(int n) {
 		int i;
 		String s = "l'astre "+this.name+" est en "+this.position.getX()+"\t"+this.position.getY()+"\t"
@@ -54,9 +56,11 @@ public class Star {
 		}
 		System.out.print(s);
 	}
+	//mise à jour
 	public void update(int n) {
 		// TODO Auto-generated method stub
 	}
+	//modificateur
 	public int doMod() throws Exception {
 		String s="";
 		System.out.println("Que voulez-vous modifier à "+this.name+" (p/n/m) ? ");
@@ -68,6 +72,7 @@ public class Star {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur de masse
 	private int doModMass() throws IOException, CommandException {
 		String s="";
 		System.out.println("Voulez-vous ajouter (a) ou régler (s) la masse ? ");
@@ -85,11 +90,13 @@ public class Star {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur de nom
 	private int doModName() throws IOException {
 		System.out.println("Quel nom voulez-vos donnez à l'astre ? ");
 		this.setName(new BufferedReader(new InputStreamReader(System.in)).readLine());		
 		return 0;
 	}
+	//suppresseur
 	public void end() throws Throwable {
 		this.finalize();
 	}

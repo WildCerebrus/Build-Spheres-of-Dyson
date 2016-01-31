@@ -8,7 +8,8 @@ public class Corporation {
 	private String name=""; //nom de la corporation
 	private int pooledFunds=0; //fonds monétaires de la corporation
 	//de base les champs sont initialisés comme ci-dessus
-	public Corporation(){}
+	public Corporation() {
+	}
 	//on peut initialiser avec le nom seulement
 	public Corporation(String name){
 		this.name=name;
@@ -48,7 +49,7 @@ public class Corporation {
 	public void setPooledFunds(int pooledFunds) {
 		this.pooledFunds = pooledFunds;
 	}
-	//deux affichages
+	//trois affichages
 	@Override
 	public String toString(){
 		return name+" a "+players.size()+" membres et "+pooledFunds+" $";
@@ -69,14 +70,16 @@ public class Corporation {
 			this.players.get(i).displayName(n+1);
 		}
 	}
+	//mise à jour des données 
 	public void update(int n) {
 		int i,j;
 		for(i=0;i<this.players.size();i++){
 			j=this.players.get(i).getFees();
-			this.players.get(i).setFunds(-n*j);
+			this.players.get(i).setFunds(this.players.get(i).getFunds()-n*j);
 			this.pooledFunds+=j*n;
 		}
 	}
+	//recherche d'un joueur
 	public Player seekPlayer(String s) {
 		int i;
 		for(i=0;i<this.players.size();i++){
@@ -84,6 +87,7 @@ public class Corporation {
 		}
 		return null;
 	}
+	//modificateur
 	public int doMod() throws Exception {
 		String s="";
 		System.out.println("Que voulez-vous modifier au "+name+" (j/n/p) ? ");
@@ -95,6 +99,7 @@ public class Corporation {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur de fonds communs
 	private int doModFunds() throws IOException, CommandException {
 		String s="";
 		System.out.println("Voulez-vous ajouter (a) ou régler (s) les fonds ? ");
@@ -112,11 +117,13 @@ public class Corporation {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur de nom
 	private int doModName() throws IOException {
 		System.out.println("Quel nom voulez-vos donnez à la corporation ? ");
 		this.setName(new BufferedReader(new InputStreamReader(System.in)).readLine());		
 		return 0;
 	}
+	//modificateur de joueur
 	private int doModPlayer() throws Exception {
 		String s="";
 		System.out.println("Quel joueur voulez-vous modifier (pseudo) ? ");
@@ -125,6 +132,7 @@ public class Corporation {
 		if(p!=null) return p.doMod();
 		throw new Exception("Joueur non-trouvé");
 	}
+	//suppresseur
 	public void end() throws Throwable {
 		this.finalize();
 	}

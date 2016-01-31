@@ -5,7 +5,7 @@ import java.io.IOException ;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-//Classe de gestion de fichiers de sauvegarde
+//Classe de gestion d'un fichier de sauvegarde
 public class Save {
 	private ArrayList<Corporation> corporations=new ArrayList<Corporation>(); //liste des corporations
 	private ArrayList<Player> players=new ArrayList<Player>(); //liste des joueurs
@@ -371,7 +371,7 @@ public class Save {
 					Double.parseDouble(Star[3])),Star[0],Double.parseDouble(Star[4])));
 		}
 	}
-	public void addCorporation(Corporation corp) {
+	public void addCorporation(Corporation corp) { //adders
 		this.corporations.add(corp);
 	}
 	public void addPlayer(Player player) {
@@ -383,6 +383,10 @@ public class Save {
 	public void addSatellite(SwarmPart sat) {
 		this.satellites.add(sat);
 	}
+	public void addStar(Star sun) {
+		this.stars.add(sun);
+	}
+	//afficheur des noms des objets de la sauvegarde
 	public void displayName(int n) {
 		int i;
 		System.out.print("\r");
@@ -410,9 +414,7 @@ public class Save {
 			this.stars.get(i).displayName(n+1);
 		}
 	}
-	public void addStar(Star sun) {
-		this.stars.add(sun);
-	}
+	//mise à jour
 	public void update(int n) {
 		int i;
 		for(i=0;i<this.corporations.size();i++){
@@ -428,7 +430,7 @@ public class Save {
 			this.stars.get(i).update(n);
 		}
 	}
-	public Corporation seekCorporation(String s) {
+	public Corporation seekCorporation(String s) { //chercheurs
 		int i;
 		for(i=0;i<this.corporations.size();i++){
 			if(this.corporations.get(i).getName().equals(s)) return this.corporations.get(i);
@@ -456,6 +458,7 @@ public class Save {
 		}
 		return null;
 	}
+	//lancement d'un ajout
 	public int doAdd() throws Exception {
 		String s="";
 		System.out.println("Quel type d'élément voulez-vous ajouter (c/j/s/a) ? ");
@@ -468,6 +471,7 @@ public class Save {
 			default : throw new Exception("entrée incohérente");
 		}
 	}
+	//ajout d'astre
 	private int doAddStar() throws Exception {
 		String s="";
 		System.out.println("Quelle méthode voulez-vous utiliser (def/spl/cpl) ? ");
@@ -479,6 +483,7 @@ public class Save {
 			default : throw new Exception("entrée incohérente");
 		}
 	}
+	//méthode complète
 	private int doAddStarCpl() throws NumberFormatException, IOException {
 		String s="";
 		System.out.println("Quel nom voulez-vous donnez ? ");
@@ -494,6 +499,7 @@ public class Save {
 		stars.add(new Star(new Coordinates(x,y,z),s,mass));
 		return 0;
 	}
+	//méthode simple
 	private int doAddStarSpl() throws IOException {
 		String s="";
 		System.out.println("Quel nom voulez-vous donnez ? ");
@@ -501,10 +507,12 @@ public class Save {
 		stars.add(new Star(s));
 		return 0;
 	}
+	//méthode par défaut
 	private int doAddStarDef() {
 		stars.add(new Star());
 		return 0;
 	}
+	//ajout de satellite
 	private int doAddSat() throws Exception {
 		String s="";
 		System.out.println("Voulez-vous ajouter un satellite à un joueur (j) ou créer un nouveau satellite (n) ? ");
@@ -515,6 +523,7 @@ public class Save {
 			default : throw new Exception("entrée incohérente");
 		}
 	}
+	//ajout d'un nouveau satellite
 	private int doAddSatN() throws Exception {
 		String s="";
 		System.out.println("Quel type de satellite voulez-vous ajouter (sp) ? ");
@@ -524,6 +533,7 @@ public class Save {
 			default : throw new Exception("entrée incohérente");
 		}
 	}
+	//ajout d'une nouvelle unité d'un essaim
 	private int doAddSwarmPart() throws Exception {
 		String s="";
 		System.out.println("Quelle méthode voulez-vous utiliser (def/spl) ? ");
@@ -534,6 +544,7 @@ public class Save {
 			default : throw new Exception("entrée incohérente");
 		}
 	}
+	//méthode simple
 	private int doAddSwarmPartSpl() throws IOException {
 		String s="";
 		System.out.println("Quel id voulez-vous donnez ? ");
@@ -541,10 +552,12 @@ public class Save {
 		satellites.add(new SwarmPart(Integer.parseInt(s)));
 		return 0;
 	}
+	//méthode par défaut
 	private int doAddSwarmPartDef() {
 		satellites.add(new SwarmPart());
 		return 0;
 	}
+	//ajout d'un satellite à un joueur
 	private int doAddSatJ() throws Exception {
 		String s="";
 		System.out.println("Quel satellite voulez-vous ajouter ? ");
@@ -559,6 +572,7 @@ public class Save {
 		p.addSat(sat);
 		return 0;
 	}
+	//ajout d'un joueur
 	private int doAddPlayer() throws Exception {
 		String s="";
 		System.out.println("Voulez-vous ajouter un joueur dans une corporation (c) ou créer un nouveau joueur (n) ? ");
@@ -569,6 +583,7 @@ public class Save {
 			default : throw new Exception("entrée incohérente");
 		}
 	}
+	//ajout d'un nouveau joueur
 	private int doAddPlayerN() throws Exception {
 		String s="";
 		System.out.println("Quelle méthode voulez-vous utiliser (def/spl/cpl) ? ");
@@ -580,6 +595,7 @@ public class Save {
 			default : throw new Exception("entrée incohérente");
 		}
 	}
+	//méthode complète
 	private int doAddPlayerCpl() throws IOException {
 		String s="";
 		System.out.println("Quel pseudo voulez-vous donnez ? ");
@@ -590,6 +606,7 @@ public class Save {
 		players.add(new Player(new ArrayList<Satellite>(),s,Integer.parseInt(t),0));
 		return 0;
 	}
+	//méthode simple
 	private int doAddPlayerSpl() throws IOException {
 		String s="";
 		System.out.println("Quel pseudo voulez-vous donnez ? ");
@@ -597,10 +614,12 @@ public class Save {
 		players.add(new Player(s));
 		return 0;
 	}
+	//méthode par défaut
 	private int doAddPlayerDef() {
 		players.add(new Player());
 		return 0;
 	}
+	//ajout d'un joueur à une corporation
 	private int doAddPlayerC() throws Exception {
 		String s="";
 		System.out.println("Quel joueur voulez-vous ajouter ? ");
@@ -615,6 +634,7 @@ public class Save {
 		c.addPlayer(p);
 		return 0;
 	}
+	//ajout d'une nouvelle corporation
 	private int doAddCorp() throws Exception {
 		String s="";
 		System.out.println("Quelle méthode voulez-vous utiliser (def/spl/cpl) ? ");
@@ -626,6 +646,7 @@ public class Save {
 			default : throw new Exception("entrée incohérente");
 		}
 	}
+	//méthode complète
 	private int doAddCorpCpl() throws IOException {
 		String s="";
 		System.out.println("Quel nom voulez-vous donnez ? ");
@@ -636,6 +657,7 @@ public class Save {
 		corporations.add(new Corporation(new ArrayList<Player>(),s,Integer.parseInt(t)));
 		return 0;
 	}
+	//méthode simple
 	private int doAddCorpSpl() throws IOException {
 		String s="";
 		System.out.println("Quel nom voulez-vous donnez ? ");
@@ -643,6 +665,7 @@ public class Save {
 		corporations.add(new Corporation(s));
 		return 0;
 	}
+	//méthode par défaut
 	private int doAddCorpDef() {
 		corporations.add(new Corporation());
 		return 0;

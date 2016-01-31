@@ -4,8 +4,8 @@ import java.io.InputStreamReader;
 
 //Satellite de type partie d'essaim (panneau simple)
 public class SwarmPart extends Satellite {
-	private PanelDimensions panelDimensions;
-	private String modele;
+	private PanelDimensions panelDimensions; //dimension de l'unité
+	private String modele; //modèle d'unité
 	//on peut initialiser un satellite par défaut
 	public SwarmPart() {
 		this(new Coordinates(),new Coordinates(),new Coordinates(),0,0,0,0,new Star(),new PanelDimensions(),
@@ -26,9 +26,7 @@ public class SwarmPart extends Satellite {
 		this.setDimensions(panelDimensions);
 		this.setModele(modele);
 	}
-	private void setModele(String modele) {
-		this.modele=modele;
-	}
+	//création uniquement à partir d'un id
 	public SwarmPart(int size) {
 		this(new Coordinates(),new Coordinates(),new Coordinates(),0,0,0,size,new Star(),new PanelDimensions(),
 				"base");
@@ -56,13 +54,14 @@ public class SwarmPart extends Satellite {
 		this.teleportation(this.getSpeed().getX()*time, this.getSpeed().getY()*time, 
 				this.getSpeed().getZ()*time);
 	}
+	//afficheur classique
 	@Override
 	public String toString() {
 		return "\r\t"+this.getId()+" is at\r\tX : "+this.getPosition().getX()+"\r\tY : "+
 				this.getPosition().getY()+"\r\tZ : "+this.getPosition().getZ()+"\r\tfrom "+
 				this.getSun().getName();
 	}
-	public PanelDimensions getDimensions() {
+	public PanelDimensions getDimensions() { //getters
 		return this.panelDimensions;
 	}
 	public void setDimensions(PanelDimensions panelDimensions) {
@@ -72,6 +71,10 @@ public class SwarmPart extends Satellite {
 	public String getModele() {
 		return this.modele;
 	}
+	private void setModele(String modele) {
+		this.modele=modele;
+	}
+	//modificateur
 	@Override
 	public int doMod() throws Exception {
 		String s="";
@@ -90,11 +93,13 @@ public class SwarmPart extends Satellite {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur du modèle
 	private int doModModele() throws IOException {
 		System.out.println("Quel modèle voulez-vos donnez au satellite ? ");
 		this.setModele(new BufferedReader(new InputStreamReader(System.in)).readLine());		
 		return 0;
 	}
+	//modificateur de masse
 	private int doModMass() throws IOException, CommandException {
 		String s="";
 		System.out.println("Voulez-vous ajouter (a) ou régler (s) la masse ? ");
@@ -112,6 +117,7 @@ public class SwarmPart extends Satellite {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur d'énergie
 	private int doModEnergy() throws IOException, CommandException {
 		String s="";
 		System.out.println("Voulez-vous ajouter (a) ou régler (s) l'énergie ? ");
@@ -129,6 +135,7 @@ public class SwarmPart extends Satellite {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur d'état
 	private int doModState() throws IOException, CommandException {
 		String s="";
 		System.out.println("Voulez-vous ajouter (a) ou régler (s) l'état ? ");
@@ -146,6 +153,7 @@ public class SwarmPart extends Satellite {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur d'Id
 	private int doModId() throws IOException {
 		System.out.println("Quel nom voulez-vos donnez à l'astre ? ");
 		this.setId(Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine()));		

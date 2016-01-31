@@ -49,7 +49,13 @@ public class Player {
 	public void setFunds(int funds) {
 		this.funds = funds;
 	}
-	//deux affichages
+	public int getFees() {
+		return this.fees;
+	}
+	public void setFees(int fees) {
+		this.fees=fees;
+	}
+	//trois affichages
 	@Override
 	public String toString() {
 		return pseudo + " have " + satellites.size() + " satellites & " + funds + " $";
@@ -70,12 +76,11 @@ public class Player {
 			this.satellites.get(i).displayName(n+1);
 		}
 	}
-	public int getFees() {
-		return this.fees;
-	}
+	//mise à jour
 	public void update(int n) {
 		// TODO Auto-generated method stub
 	}
+	//modificateur
 	public int doMod() throws Exception {
 		String s="";
 		System.out.println("Que voulez-vous modifier au "+pseudo+" (s/p/f/c) ? ");
@@ -88,6 +93,7 @@ public class Player {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur des charges envers la corporation
 	private int doModFees() throws IOException, CommandException {
 		String s="";
 		System.out.println("Voulez-vous ajouter (a) ou régler (s) la taxe corporative ? ");
@@ -105,6 +111,7 @@ public class Player {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur des fonds
 	private int doModFunds() throws IOException, CommandException {
 		String s="";
 		System.out.println("Voulez-vous ajouter (a) ou régler (s) les fonds ? ");
@@ -122,11 +129,13 @@ public class Player {
 			default : throw new CommandException("entrée incohérente");
 		}
 	}
+	//modificateur de pseudo
 	private int doModPseudo() throws IOException {
 		System.out.println("Quel pseudo voulez-vos donnez au joueur ? ");
 		this.setPseudo(new BufferedReader(new InputStreamReader(System.in)).readLine());		
 		return 0;
 	}
+	//modificateur de satellite
 	private int doModSat() throws Exception {
 		String s="";
 		System.out.println("Quel satellite voulez-vous modifier (id) ? ");
@@ -135,6 +144,7 @@ public class Player {
 		if(sat!=null) return sat.doMod();
 		throw new Exception("Satellite non-trouvé");
 	}
+	//chercheur de satellite
 	private Satellite seekSat(int n) {
 		int i;
 		for(i=0;i<satellites.size();i++){
@@ -142,6 +152,7 @@ public class Player {
 		}
 		return null;
 	}
+	//suppresseur
 	public void end() throws Throwable {
 		this.finalize();
 	}

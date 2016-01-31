@@ -4,14 +4,14 @@ import java.io.InputStreamReader;
 // Classe de position cartésienne 3D en mètre
 public class Coordinates {
 	private double x,y,z; //coordonnées 3D en mètre
-	//déclaration à l'origine par défaut
+	//déclaration aléatoire par défaut
 	public Coordinates() { 
 		this(random(),random(),random());
 	}
 	private static double random() {
-		return Math.pow(10, 9)*(Math.random()-0.5);
+		return Math.pow(10, 9)*(Math.random()-0.5); //génération aléatoire de coordonnées
 	}
-	public Coordinates(double x, double y, double z) { //déclaration de type double
+	public Coordinates(double x, double y, double z) { //déclaration valuée
 		this.setX(x);
 		this.setY(y);
 		this.setZ(z);
@@ -44,12 +44,12 @@ public class Coordinates {
 	public void setZ(double z) {
 		this.z = z;
 	}
-	public int doMod() throws Exception {
+	public int doMod() throws Exception { //modificateur
 		String s="";
 		System.out.println("Quelle coordonnée voulez-vous changer et comment (xa/xs/ya/...) ? ");
 		s=new BufferedReader(new InputStreamReader(System.in)).readLine();
 		switch(s){
-			case "xa" : {
+			case "xa" : { 
 				System.out.println("De combien voulez-vous modifier x ? ");
 				s=new BufferedReader(new InputStreamReader(System.in)).readLine();
 				this.setX(this.getX()+Double.parseDouble(s));
