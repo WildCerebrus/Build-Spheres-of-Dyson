@@ -8,6 +8,9 @@ public abstract class Economic extends Element {
 	public double getFunds() {
 		return this.funds;
 	}
+	public ArrayList<AstralObject> getEstates() {
+		return this.estates;
+	}
 	public String toString() {
 		return super.getName()+" has "+this.funds+" $";
 	}
