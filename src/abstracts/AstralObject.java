@@ -10,6 +10,7 @@ public abstract class AstralObject extends Element {
 	private Coordinates position;
 	private Coordinates speed;
 	private Coordinates acceleration;
+	private AstralObject center;
 	public double getMass() {
 		return this.mass;
 	}
@@ -30,6 +31,9 @@ public abstract class AstralObject extends Element {
 	}
 	public Coordinates getAcceleration() {
 		return this.acceleration;
+	}
+	public AstralObject getCenter() {
+		return this.center;
 	}
 	public String toString() {
 		return super.toString();
