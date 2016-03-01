@@ -32,6 +32,6 @@ public abstract class AstralObject extends Element {
 		return this.acceleration;
 	}
 	public String toString() {
-		return super.toString();
+		return super.toString()+" is on "+this.position.toString();
 	}
 }
