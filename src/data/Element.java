@@ -5,6 +5,9 @@ public abstract class Element {
 	public String getName() {
 		return this.name;
 	}
+	public void setName(String n) {
+		this.name=n;
+	}
 	public String toString() {
 		return this.name;
 	}
