@@ -12,12 +12,14 @@ public class Corporation extends Economic {
 		this.setFunds(0);
 		this.setEstates(new ArrayList<AstralObject>());
 		this.setCorporation(null);
+		this.setName("");
 	}
 	public Corporation(Corporation c) {
 		this.members=c.getMembers();
 		this.setFunds(c.getFunds());
 		this.setEstates(c.getEstates());
 		this.setCorporation(c.getCorporation());
+		this.setName(c.getName());
 	}
 	public ArrayList<Economic> getMembers() {
 		return this.members;
