@@ -10,6 +10,9 @@ public abstract class AstralObject extends Element {
 	private Coordinates position;
 	private Coordinates speed;
 	private Coordinates acceleration;
+	public void addEnergy(double e) {
+		this.energy+=e;
+	}
 	public double getMass() {
 		return this.mass;
 	}
