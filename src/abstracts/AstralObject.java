@@ -7,10 +7,10 @@ public abstract class AstralObject extends Element {
 	private double energy;
 	private double effectiveRadius;
 	private Economic owner;
+	private AstralObject center;
 	private Coordinates position;
 	private Coordinates speed;
 	private Coordinates acceleration;
-	private AstralObject center;
 	public double getMass() {
 		return this.mass;
 	}

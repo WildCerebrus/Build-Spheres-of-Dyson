@@ -24,9 +24,6 @@ public class Coordinates {
 		this.y+=dy;
 		this.z+=dz;
 	}
-	public String toString() {
-		return "x : "+this.x+" y : "+this.y+" z : "+this.z;
-	}
 	public double getX() {
 		return this.x;
 	}
@@ -35,5 +32,17 @@ public class Coordinates {
 	}
 	public double getZ() {
 		return this.z;
+	}
+	public void setX(double x) {
+		this.x=x;
+	}
+	public void setY(double y) {
+		this.y=y;
+	}
+	public void setZ(double z) {
+		this.z=z;
+	}
+	public String toString() {
+		return "x : "+this.x+" y : "+this.y+" z : "+this.z;
 	}
 }
