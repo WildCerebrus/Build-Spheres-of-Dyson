@@ -10,6 +10,7 @@ public class Panel extends Satellite {
 		this.setEnergy(0);
 		this.setEffectiveRadius(Math.pow(10, 3)*Math.random());
 		this.setOwner(null);
+		this.setCenter(null);
 		this.setPosition(new Coordinates());
 		this.setSpeed(new Coordinates());
 		this.setAcceleration(new Coordinates());
@@ -21,6 +22,7 @@ public class Panel extends Satellite {
 		this.setEnergy(p.getEnergy());
 		this.setEffectiveRadius(p.getEffectiveRadius());
 		this.setOwner(p.getOwner());
+		this.setCenter(p.getCenter());
 		this.setPosition(new Coordinates(p.getPosition()));
 		this.setSpeed(new Coordinates(p.getSpeed()));
 		this.setAcceleration(new Coordinates(p.getAcceleration()));

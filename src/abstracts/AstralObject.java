@@ -7,6 +7,7 @@ public abstract class AstralObject extends Element {
 	private double energy;
 	private double effectiveRadius;
 	private Economic owner;
+	private AstralObject center;
 	private Coordinates position;
 	private Coordinates speed;
 	private Coordinates acceleration;
@@ -21,6 +22,9 @@ public abstract class AstralObject extends Element {
 	}
 	public Economic getOwner() {
 		return this.owner;
+	}
+	public AstralObject getCenter() {
+		return this.center;
 	}
 	public Coordinates getPosition() {
 		return this.position;
@@ -42,6 +46,9 @@ public abstract class AstralObject extends Element {
 	}
 	public void setOwner(Economic o) {
 		this.owner=o;
+	}
+	public void setCenter(AstralObject c) {
+		this.center=c;
 	}
 	public void setPosition(Coordinates p) {
 		this.position.setX(p.getX());
