@@ -5,4 +5,7 @@ public abstract class Satellite extends AstralObject {
 	public int getHealth() {
 		return this.health;
 	}
+	public void setHealth(int h) {
+		this.health=h;
+	}
 }
