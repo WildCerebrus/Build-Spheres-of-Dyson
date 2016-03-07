@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import abstracts.Element;
+import save.BackUp;
 import save.Load;
 
 public class Save {
@@ -27,6 +28,12 @@ public class Save {
 	}
 	public void load(File f) throws IOException {
 		this.save=new Load(f).getText();
+	}
+	public void backUp(String s) throws IOException {
+		this.backUp(new File(s));
+	}
+	public void backUp(File f) throws IOException {
+		new BackUp(f,this.save);
 	}
 	public String getSave() {
 		return this.save;
