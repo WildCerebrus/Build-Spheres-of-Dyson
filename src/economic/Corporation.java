@@ -19,6 +19,15 @@ public class Corporation extends Economic {
 		this.setEstates(c.getEstates());
 		this.setCorporation(c.getCorporation());
 	}
+	public void addMember(Economic e) {
+		this.members.add(e);
+		e.getCorporation().members.remove(e);
+		e.setCorporation(this);
+	}
+	public void deleteMember(Economic e) {
+		this.members.remove(e);
+		e.setCorporation(null);
+	}
 	public ArrayList<Economic> getMembers() {
 		return this.members;
 	}
